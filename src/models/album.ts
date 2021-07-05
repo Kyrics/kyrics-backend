@@ -24,12 +24,9 @@ export default (sequelize: Sequelize) => <AlbumStatic>sequelize.define("Albums",
         title: {
             type: DataTypes.CHAR,
             allowNull: false,
-            unique: true
         },
-        image: {
+        image_url: {
             type: DataTypes.CHAR,
-            allowNull: true,
-            unique: true
         },
     }, {
         freezeTableName: true,

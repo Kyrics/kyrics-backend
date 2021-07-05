@@ -23,7 +23,6 @@ export default (sequelize: Sequelize) => <ArtistStatic>sequelize.define("artists
         name: {
             type: DataTypes.CHAR,
             allowNull: false,
-            unique: true
         },
     }, {
         freezeTableName: true,
