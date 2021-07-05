@@ -14,7 +14,8 @@ export type AlbumStatic = typeof Model & {
 };
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export default (sequelize: Sequelize) => <AlbumStatic>sequelize.define("Albums",
+export function albumFactory (sequelize: Sequelize) {
+    return <AlbumStatic>sequelize.define("albums",
     {
         id: {
             type: DataTypes.INTEGER,
@@ -31,5 +32,5 @@ export default (sequelize: Sequelize) => <AlbumStatic>sequelize.define("Albums",
     }, {
         freezeTableName: true,
         timestamps: false
-    }
-);
+    });
+}
