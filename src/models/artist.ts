@@ -13,7 +13,8 @@ export type ArtistStatic = typeof Model & {
 };
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export default (sequelize: Sequelize) => <ArtistStatic>sequelize.define("artists",
+export function artistFactory (sequelize: Sequelize) {
+    return <ArtistStatic>sequelize.define("artists",
     {
         id: {
             type: DataTypes.INTEGER,
@@ -27,5 +28,5 @@ export default (sequelize: Sequelize) => <ArtistStatic>sequelize.define("artists
     }, {
         freezeTableName: true,
         timestamps: false
-    }
-);
+    });
+}
