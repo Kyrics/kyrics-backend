@@ -29,9 +29,9 @@
     "prettier": "^2.3.2"
   },
   "scripts": {
-    "dev": "ts-node src",
-    "build": "tsc && node dist",
-    "start": "npx tsc && node dist/app.js"
+    "dev": "ts-node src/app.ts",
+    "build": "tsc && node dist/app.js",
+    "start": "npx tsc && nodemon dist/app.js"
   },
   "repository": {
     "type": "git",
