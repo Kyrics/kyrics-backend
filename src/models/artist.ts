@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import { Sequelize, Model, DataTypes, BuildOptions } from 'sequelize';
+import { BuildOptions, DataTypes, Model, Sequelize } from "sequelize";
 
 export interface ArtistAttributes {
     id: number;
