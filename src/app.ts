@@ -1,5 +1,8 @@
 import express, { Request, Response, NextFunction } from 'express';
+import dotenv from 'dotenv';
+import sequelize from './models';
 
+dotenv.config();
 const app = express();
 
 app.use(express.urlencoded());
@@ -25,6 +28,14 @@ app
     🛡️  Server listening on port: 5000 🛡️
     ################################################
   `);
+    sequelize
+      .authenticate()
+      .then(async () => {
+        console.log('connection success');
+      })
+      .catch((e) => {
+        console.log('TT : ', e);
+      });
   })
   .on('error', (err) => {
     console.error(err);
