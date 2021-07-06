@@ -9,6 +9,9 @@ security:
   - Authorization:
     - read
     - write
+paths:
+  /song/{id}:
+    $ref: './paths/song.yaml'
 components:
   securitySchemes:
     Authorization:
