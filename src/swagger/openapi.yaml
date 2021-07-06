@@ -1,0 +1,48 @@
+openapi: '3.0.0'
+info:
+  version: 1.0.0
+  title: Kyrics Server API docs
+  description: Kyrics Server의 API 문서입니다
+servers:
+  - url: http://localhost:5000/
+security:
+  - Authorization:
+    - read
+    - write
+components:
+  securitySchemes:
+    Authorization:
+      type: apiKey
+      in: header
+      name: x-access-token
+  schemas:
+    Response:
+      type: object
+      properties:
+        status:
+          type: number
+        data:
+          type: object
+        message:
+          type: string
+  responses:
+    BadRequest:
+      description: 잘못된 요청
+      content:
+        application/json:
+          schema: 
+            $ref: '#components/schemas/Response'
+          example:
+            status: 400
+            data: {}
+            message: 잘못된 요청
+    InternalServerError:
+      description: 서버 오류
+      content:
+        application/json:
+          schema:
+            $ref: '#components/schemas/Response'
+          example:
+            status: 500
+            data: {}
+            message: 서버 오류
