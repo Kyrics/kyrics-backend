@@ -31,7 +31,7 @@ get:
                   atrist:
                     description: song의 artist
                     type: string
-                  albumImage:
+                  albumImageUrl:
                     description: 앨범 트랙 이미지 링크
                     type: string
                   youtubeUrl:
@@ -62,7 +62,7 @@ get:
                   id: 1
                   title: Life Goes On
                   artist: BTS
-                  albumImage: https://upload.wikimedia.org/wikipedia/ko/7/75/%EB%B0%A9%ED%83%84%EC%86%8C%EB%85%84%EB%8B%A8_-_BE.jpg
+                  albumImageUrl: https://upload.wikimedia.org/wikipedia/ko/7/75/%EB%B0%A9%ED%83%84%EC%86%8C%EB%85%84%EB%8B%A8_-_BE.jpg
                   youtubeUrl: https://www.youtube.com/watch?v=-5q5mZbe3V8
                   isSaved: true
                   lyrics:

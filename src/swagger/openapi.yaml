@@ -10,10 +10,16 @@ security:
     - read
     - write
 paths:
-  /song/{id}:
+  /song/:id:
     $ref: './paths/song.yaml'
   /atrists:
     $ref: './paths/artists.yaml'
+  /user:
+    $ref: './paths/user.yaml'
+  /user/song:
+    $ref: './paths/user-song.yaml'
+  /user/song/:id:
+    $ref: './paths/user-one-song.yaml'
 components:
   securitySchemes:
     Authorization:
