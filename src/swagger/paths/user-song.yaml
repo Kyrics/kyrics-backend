@@ -1,0 +1,43 @@
+get:
+  summary: 로그인한 유저의 My Songs를 조회합니다. (확정 아님)
+  responses:
+    200:
+      content:
+        application/json:
+          schema:
+            type: array
+            items: object
+            properties:
+              id:
+                description: 해당 song의 id
+                type: number
+              title:
+                description: 해당 song의 title
+                type: string
+              artist:
+                description: 해당 song의 artist
+                type: array
+                items: string
+              albumImageUrl:
+                description: 앨범 이미지 url
+                type: string
+              albumTitle:
+                description: 앨범의 title
+            example:
+              - id: 1
+                title: Life goes on
+                artist:
+                  - BTS
+                albumImageUrl: https://upload.wikimedia.org/wikipedia/en/a/a2/BTS_-_Be_Cover.png
+                albumTitle: BE
+              - id: 2
+                title: 뚜두뚜두 (DDU-DU DDU-DU)
+                atrist:
+                  - BLACKPINK
+                albumImageUrl: https://cdnimg.melon.co.kr/cm/album/images/101/76/415/10176415_500.jpg?7bebc774b094d72c1c22165612ef0948
+                albumTitle: SQUARE UP
+    400:
+      $ref: '../openapi.yaml#/components/responses/BadRequest'
+    500:
+      $ref: '../openapi.yaml#/components/responses/InternalServerError'
+
