@@ -37,7 +37,7 @@
   },
   "scripts": {
     "dev": "ts-node src/app.ts",
-    "build": "tsc && node dist/app.js",
+    "build": "tsc",
     "start": "npx tsc && nodemon dist/app.js",
     "api-docs": "swagger-cli bundle ./src/swagger/openapi.yaml --outfile build/swagger.yaml --type yaml"
   },

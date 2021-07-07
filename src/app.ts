@@ -27,10 +27,10 @@ app.use((err: ExpressError, req: Request, res: Response, next: NextFunction) => 
 });
 
 app
-  .listen(5000, () => {
+  .listen(process.env.PORT || 8081, () => {
     console.log(`
     ################################################
-    🛡️  Server listening on port: 5000 🛡️
+    🛡️  Server listening on port: ${process.env.PORT || 8081} 🛡️
     ################################################
   `);
     sequelize
