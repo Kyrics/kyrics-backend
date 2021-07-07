@@ -38,3 +38,22 @@ get:
       $ref: '../openapi.yaml#/components/responses/BadRequest'
     500:
       $ref: '../openapi.yaml#/components/responses/InternalServerError'
+delete:
+  summary: kyrics를 탈퇴합니다.
+  responses:
+    200:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: number
+                example: 200
+              message:
+                type: string
+                example: 요청 성공
+    400:
+      $ref: '../openapi.yaml#/components/responses/BadRequest'
+    500:
+      $ref: '../openapi.yaml#/components/responses/InternalServerError'
