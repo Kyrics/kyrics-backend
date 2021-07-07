@@ -29,6 +29,7 @@ jobs:
           echo DB_HOST=${{ secrets.DB_HOST }} >> .env
           echo DB_DBNAME=${{ secrets.DB_DBNAME }} >> .env
           echo DB_USERNAME=${{ secrets.DB_USERNAME }} >> .env
+          echo DB_PASSWORD=${{ secrets.DB_PASSWORD }} >> .env
           echo DB_PORT= ${{ secrets.DB_PORT }} >> .env
           echo AWS_BUCKET_NAME=${{ secrets.TEST_AWS_BUCKET_NAME }} >> .env
           cat .env
