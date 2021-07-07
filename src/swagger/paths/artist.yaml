@@ -1,0 +1,77 @@
+get:
+  summary: 해당 id의 가수의 노래들을 가져옵니다.
+  responses:
+    200:
+      description: 요청 성공
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: number
+                example: 200
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      description: artist의 id
+                      type: number
+                    name:
+                      description: artist의 이름
+                      type: string
+                    backgroundImage:
+                      description: artist의 프로필 이미지
+                      type: string
+                    logo:
+                      description: artist의 로고 이미지
+                      type: string
+                    songs:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            description: 노래의 id
+                            type: number
+                          title:
+                            description: 노래의 제목
+                            type: string
+                          artist:
+                            description: 노래의 가수
+                            type: string
+                          albumImage:
+                            description: 노래의 앨범 커버 이미지
+                            type: string
+                example:
+                  - id: 1
+                    name: BTS
+                    backgroundImage: https://img.hankyung.com/photo/201908/c05e2425a01667953569fc908e0be320.jpg
+                    logo: https://1000logos.net/wp-content/uploads/2018/03/BTS_Logo.png
+                    songs:
+                      - id: 1
+                        title:
+                        artist:
+                        albumImage:
+                      - id: 2
+                        title:
+                        artist:
+                        albumImage:
+                      - id: 3
+                        title:
+                        artist:
+                        albumImage:
+                      - id: 4
+                        title:
+                        artist:
+                        albumImage:
+                      - id: 5
+                        title:
+                        artist:
+                        albumImage:
+    400:
+      $ref: '../openapi.yaml#/components/responses/BadRequest'
+    500:
+      $ref: '../openapi.yaml#/components/responses/InternalServerError'             
