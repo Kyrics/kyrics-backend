@@ -4,7 +4,6 @@
 
 # Build file
 dist/
-build/
 
 # Mac
 .DS_Store
