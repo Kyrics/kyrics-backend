@@ -12,8 +12,10 @@ security:
 paths:
   /song/:id:
     $ref: './paths/song.yaml'
-  /atrists:
+  /artists:
     $ref: './paths/artists.yaml'
+  /artist/:id:
+    $ref: './paths/artist.yaml'
   /user:
     $ref: './paths/user.yaml'
   /user/song:
