@@ -12,6 +12,12 @@ const swaggerSpec = YAML.load(path.join(__dirname, '../build/swagger.yaml'));
 app.use(express.urlencoded());
 app.use(express.json());
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
+app.use('/health-check', (req, res) => {
+  res.json({
+    status: 200,
+    message: 'Welcome to Kyrics API',
+  });
+});
 
 interface ExpressError extends Error {
   status: number;
