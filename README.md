@@ -63,7 +63,7 @@
 
 ### :green_book: Architecture
 
-![architecture](url)  
+![architecture](https://github.com/Kyrics/kyrics-backend/blob/develop/img/server%20architecture.png?raw=true)  
 
 <br>
 
