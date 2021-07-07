@@ -1,8 +1,11 @@
 # 💜 Kyrics
 <img style="border: 1px solid black !important; border-radius:20px;" src="https://kyrics.s3.ap-northeast-2.amazonaws.com/%ED%82%A4%EB%A6%AD+%EB%A1%9C%EA%B3%A0-01.jpg" width="100%" />
-<b>Learn Korean through your favorite K-Pop artists and songs!<br>
-케이팝 가사로 배우는 우리말, 키릭스</b>
-<br><br>
+
+### Learn Korean through your favorite K-Pop artists and songs!
+
+### 케이팝 가사로 배우는 우리말, 키릭스
+
+<br>
 
 ![node_badge](https://img.shields.io/badge/node-v12.17.0-green)
 ![npm_bedge](https://img.shields.io/badge/npm-v6.14.4-blue)
@@ -11,22 +14,11 @@
     
 * Term : 2021.06.26 ~ 2021.07.17
 
-* [API Spec](url)
+* [API Spec](http://13.125.187.196:8081/api-docs/)
 
-* [Coding Convention](https://www.notion.so/Coding-Convention-9555173592874de5b6d2a362813e0146)
+* [Coding Convention](https://github.com/Kyrics/kyrics-backend/blob/develop/CODINGCONVENTION.md)
 
-* [Contribution Guide](https://www.notion.so/Contribution-Guide-3b22663ceb1841dfba51fea38b2f38a1)</b>
-
-<br>
-
-
-### :bookmark_tabs: WorkFlow
-
-<br>
-
-### :heavy_check_mark: Features
-
-- 
+* [Contribution Guide](https://github.com/Kyrics/kyrics-backend/blob/develop/CONTRIBUTIONGUIDE.md)</b>
 
 <br>
 
@@ -94,9 +86,10 @@
 <br>
 
 
-### :computer: Contributor
+### 👩‍👩‍👧 Contributor
 
 * [윤가영](https://github.com/kyY00n)
 * [성청하](https://github.com/cheongha)
 * [김서현](https://github.com/kshjessica)
 
+<br>
