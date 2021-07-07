@@ -8,6 +8,7 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "mysql2": "^2.2.5",
+    "pm2": "^5.1.0",
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.6.4",
     "sequelize-cli": "^6.2.0",
@@ -38,7 +39,8 @@
   "scripts": {
     "dev": "ts-node src/app.ts",
     "build": "tsc",
-    "start": "npx tsc && nodemon dist/app.js",
+    "test": "npx tsc && nodemon dist/app.js",
+    "start": "node ./node_modules/pm2/bin/pm2 start ./dist/app.js --name server",
     "api-docs": "swagger-cli bundle ./src/swagger/openapi.yaml --outfile build/swagger.yaml --type yaml"
   },
   "repository": {
