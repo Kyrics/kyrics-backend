@@ -1,0 +1,41 @@
+get:
+  summary: 메인화면에 보일 artist의 정보를 가져옵니다.
+  responses:
+    200:
+      description: 요청 성공
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: number
+                example: 200
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      description: artist의 id
+                      type: number
+                    name:
+                      description: artist의 이름
+                      type: string
+                    profileImage:
+                      description: artist의 프로필 이미지
+                    logo:
+                      description: artist의 로고 이미지
+                example:
+                  - id: 1
+                    name: BTS
+                    profileImage: https://img0.yna.co.kr/etc/inner/EN/2021/06/16/AEN20210616005400315_01_i_P2.jpg
+                    logo: https://1000logos.net/wp-content/uploads/2018/03/BTS_Logo.png
+                  - id: 2
+                    name: Black Pink
+                    profileImage: https://img.koreatimes.co.kr/upload/newsV2/images/202006/e6957dd9e7254ed8b0f9d17be863eaad.jpg/dims/resize/740/optimize
+                    logo: https://www.findatamall.or.kr/fsec/dataProd/generalDataProdDetail.do?cmnx=44&goods_id=26e8525c-aefd-11eb-9f58-f220ef21bb88
+    400:
+      $ref: '../openapi.yaml#/components/responses/BadRequest'
+    500:
+      $ref: '../openapi.yaml#/components/responses/InternalServerError'             
