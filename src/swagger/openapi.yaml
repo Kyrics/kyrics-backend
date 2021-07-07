@@ -10,7 +10,7 @@ security:
     - read
     - write
 paths:
-  /song/{id}:
+  /song/:id:
     $ref: './paths/song.yaml'
   /atrists:
     $ref: './paths/artists.yaml'
