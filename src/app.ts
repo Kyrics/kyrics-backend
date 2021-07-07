@@ -1,12 +1,17 @@
 import express, { Request, Response, NextFunction } from 'express';
 import dotenv from 'dotenv';
+import path from 'path';
+import YAML from 'yamljs';
+import swaggerUI from 'swagger-ui-express';
 import sequelize from './models';
 
 dotenv.config();
 const app = express();
+const swaggerSpec = YAML.load(path.join(__dirname, '../build/swagger.yaml'));
 
 app.use(express.urlencoded());
 app.use(express.json());
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 
 interface ExpressError extends Error {
   status: number;
