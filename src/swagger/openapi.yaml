@@ -18,6 +18,8 @@ paths:
     $ref: './paths/user.yaml'
   /user/song:
     $ref: './paths/user-song.yaml'
+  /user/song/:id:
+    $ref: './paths/user-one-song.yaml'
 components:
   securitySchemes:
     Authorization:

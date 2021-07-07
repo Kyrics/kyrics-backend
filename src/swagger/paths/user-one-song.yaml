@@ -1,0 +1,32 @@
+put:
+  summary: (학습뷰에서 사용) 해당 id를 가진 노래를 유저의 my songs에서 추가/삭제 합니다.
+  parameters:
+    - in: path
+      name: id
+      schema:
+        type: integer
+      required: true
+      example: 1
+      description: 추가/삭제하길 원하는 노래의 id
+  responses:
+    200:
+      description: 요청 성공
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: number
+                example: 200
+              isSaved:
+                type: boolean
+                example: true
+              message:
+                type: string
+                example: 요청 성공
+    400:
+      $ref: '../openapi.yaml#/components/responses/BadRequest'
+    500:
+      $ref: '../openapi.yaml#/components/responses/InternalServerError'
+
