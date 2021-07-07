@@ -1,5 +1,5 @@
 # 💜 Kyrics
-<img style="border: 1px solid black !important; border-radius:20px;" src="" width="200px" />
+<img style="border: 1px solid black !important; border-radius:20px;" src="https://kyrics.s3.ap-northeast-2.amazonaws.com/%ED%82%A4%EB%A6%AD+%EB%A1%9C%EA%B3%A0-01.jpg" width="100%" />
 <b>Learn Korean through your favorite K-Pop artists and songs!<br>
 케이팝 가사로 배우는 우리말, 키릭스</b>
 <br><br>
@@ -72,18 +72,6 @@
 ### :green_book: Architecture
 
 ![architecture](url)  
-
-<br>
-
-### :orange_book: DB ERD
-
-![ERD](url)
-
-<br>
-
-### 📑: Model Association
-
-![ERD](url)
 
 <br>
 
