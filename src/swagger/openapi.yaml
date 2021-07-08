@@ -16,6 +16,10 @@ paths:
     $ref: './paths/artists.yaml'
   /artist/:id:
     $ref: './paths/artist.yaml'
+  /song/:id/vocab:
+    $ref: './paths/key-expression.yaml'
+  /song/:id/vocab/:id:
+    $ref: './paths/user-one-vocab.yaml'
   /user:
     $ref: './paths/user.yaml'
   /user/song:
