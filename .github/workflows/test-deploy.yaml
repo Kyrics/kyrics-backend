@@ -25,6 +25,7 @@ jobs:
           touch .env
           echo PORT=8081 >> .env
           echo NODE_ENV=${{ secrets.TEST_NODE_ENV }} >> .env
+          echo PORT=${{ secrets.PORT }} >> .env
           echo JWT_SECRET=${{ secrets.JWT_SECRET }} >> .env
           echo DB_HOST=${{ secrets.DB_HOST }} >> .env
           echo DB_DBNAME=${{ secrets.DB_DBNAME }} >> .env
@@ -64,7 +65,7 @@ jobs:
 
       # Make ZIP file with source code
       - name: Generate deployment package
-        run: zip -r deploy.zip . -x '*.git*' './src/*' 'README.md' './aws/*' awscliv2.zip
+        run: zip -r deploy.zip . -x '*.git*' './src/*' './img/*' 'README.md' './aws/*' awscliv2.zip
 
       # Deploy to Elastic Beanstalk
       - name: Test-deploy to EB

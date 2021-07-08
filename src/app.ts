@@ -12,6 +12,11 @@ const swaggerSpec = YAML.load(path.join(__dirname, '../build/swagger.yaml'));
 app.use(express.urlencoded());
 app.use(express.json());
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
+app.use('/health-check', (req, res) => {
+  res.status(200).json({
+    message: 'Welcome to Kyrics API',
+  });
+});
 
 interface ExpressError extends Error {
   status: number;
@@ -27,10 +32,10 @@ app.use((err: ExpressError, req: Request, res: Response, next: NextFunction) => 
 });
 
 app
-  .listen(process.env.PORT || 8081, () => {
+  .listen(process.env.PORT || 8080, () => {
     console.log(`
     ################################################
-    🛡️  Server listening on port: ${process.env.PORT || 8081} 🛡️
+    🛡️  Server listening on port: ${process.env.PORT || 8080} 🛡️
     ################################################
   `);
     sequelize
