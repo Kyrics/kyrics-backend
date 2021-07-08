@@ -19,13 +19,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
       - name: Create env file
         run: |
           touch .env
           echo PORT=8081 >> .env
           echo NODE_ENV=${{ secrets.TEST_NODE_ENV }} >> .env
-          echo PORT=${{ secrets.PORT }} >> .env
           echo JWT_SECRET=${{ secrets.JWT_SECRET }} >> .env
           echo DB_HOST=${{ secrets.DB_HOST }} >> .env
           echo DB_DBNAME=${{ secrets.DB_DBNAME }} >> .env
