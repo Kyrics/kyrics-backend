@@ -41,6 +41,7 @@
     "build": "tsc",
     "test": "npx tsc && nodemon dist/app.js",
     "start": "node ./node_modules/pm2/bin/pm2 start ./dist/app.js --name server",
+    "poststart": "node ./node_modules/pm2/bin/pm2 logs",
     "api-docs": "swagger-cli bundle ./src/swagger/openapi.yaml --outfile build/swagger.yaml --type yaml"
   },
   "repository": {
