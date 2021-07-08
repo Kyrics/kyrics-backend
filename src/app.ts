@@ -13,8 +13,7 @@ app.use(express.urlencoded());
 app.use(express.json());
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 app.use('/health-check', (req, res) => {
-  res.json({
-    status: 200,
+  res.status(200).json({
     message: 'Welcome to Kyrics API',
   });
 });
