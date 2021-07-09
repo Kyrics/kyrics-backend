@@ -1,40 +1,24 @@
-import { BuildOptions, DataTypes, Model, Sequelize } from "sequelize";
+import {
+    Model,
+    Column,
+    Table,
+    DataType
+} from 'sequelize-typescript';
 
-export interface LyricsAttributes{
+@Table({ tableName: 'lyrics', freezeTableName: true })
+export default class Lyrics extends Model<Lyrics> {
+    @Column({ primaryKey: true })
+    id: number;
+
+    @Column(DataType.TEXT)
     kor: string;
+
+    @Column(DataType.TEXT)
     eng: string;
-    start_time: string;
+
+    @Column(DataType.TEXT)
+    startTime: string;
+
+    @Column(DataType.TEXT)
     duration: string;
 }
-
-export interface LyricsModel extends Model<LyricsAttributes>, LyricsAttributes{}
-
-export class Lyrics extends Model<LyricsModel, LyricsAttributes>{}
-
-export type LyricsStatic = typeof Model & {
-    new (values?: object, options?: BuildOptions): LyricsModel;
-  };
-
-export function LyricsFactory (sequelize : Sequelize) {
-    return <LyricsStatic>sequelize.define('Lyrics', {
-        kor:{
-            type: DataTypes.TEXT,
-            allowNull: false
-        },
-        eng :{
-            type: DataTypes.TEXT,
-            allowNull: false,
-        },
-        start_time:{
-            type: DataTypes.TEXT,
-            allowNull: false,
-        },
-        duration :{
-            type: DataTypes.TEXT,
-            allowNull: false,
-        }
-    }, {
-        freezeTableName: true,
-        timestamps: false
-    });
-} 
