@@ -8,7 +8,7 @@ import {
   Unique
 } from 'sequelize-typescript';
 
-@Table({ tableName: 'user', freezeTableName: true })
+@Table({ tableName: 'user', freezeTableName: true, underscored: true})
 export default class User extends Model<User> {
   @Column({ primaryKey: true })
   id: number;

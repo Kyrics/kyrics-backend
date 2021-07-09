@@ -1,6 +1,6 @@
 import { Model, Column, CreatedAt, UpdatedAt, Table, PrimaryKey } from 'sequelize-typescript';
 
-@Table({ tableName: 'song', freezeTableName: true })
+@Table({ tableName: 'song', freezeTableName: true, underscored: true})
 export default class Song extends Model<Song> {
   @Column
   @PrimaryKey

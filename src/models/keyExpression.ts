@@ -5,7 +5,7 @@ import {
     DataType
 } from 'sequelize-typescript';
 
-@Table({ tableName: 'key_expression', freezeTableName: true })
+@Table({ tableName: 'key_expression', freezeTableName: true, underscored: true})
 export default class KeyExpression extends Model<KeyExpression> {
     @Column({ primaryKey: true })
     id: number;
