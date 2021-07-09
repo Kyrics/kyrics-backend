@@ -1,9 +1,17 @@
-import { Sequelize, Model } from 'sequelize';
-import config from '../config/config';
+import { Sequelize } from 'sequelize-typescript';
+import dotenv from 'dotenv';
+import User from './user';
 
-const env = process.env.NODE_ENV || 'development';
+dotenv.config();
 
-export default new Sequelize(config.development.database, config.development.username, config.development.password, {
-  host: config.development.host,
+const sequelize = new Sequelize({
+  host: process.env.DB_HOST || 'localhost',
+  database: process.env.DB_DBNAME,
   dialect: 'mysql',
+  username: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
 });
+
+sequelize.addModels([User]);
+
+export default sequelize;
