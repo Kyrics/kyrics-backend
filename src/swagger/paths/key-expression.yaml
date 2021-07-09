@@ -1,0 +1,88 @@
+get:
+  summary: 학습화면에서 해당 노래의 Key Expression을 가져옵니다.
+  parameters:
+    - in: path
+      name: id
+      schema:
+        type: integer
+      required: true
+      example: 1
+      description: 정보를 가져오길 원하는 노래의 id
+  responses:
+    200:
+      description: 요청 성공
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: number
+                example: 200
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      description: vocab의 id
+                      type: number
+                    kor:
+                      description: 한국어 vocab
+                      type: string
+                    eng:
+                      description: 영어 vocab
+                      type: string
+                    korExample:
+                      description: 한국어 예문
+                      type: string
+                    engExample:
+                      description: 영어 예문
+                      type: string
+                    isSaved:
+                      description: MyVocab(즐겨찾기) 여부
+                      type: boolean
+                example:
+                  - id: 1
+                    kor: 세상
+                    eng: world
+                    korExample: New World
+                    engExample: 새로운 세계
+                    isSaved: true
+                  - id: 2
+                    kor: without
+                    eng: 없이
+                    korExample: without U
+                    engExample: 너없이
+                    isSaved: true
+                  - id: 3
+                    kor: 봄
+                    eng: spring
+                    korExample: 나는 봄이 좋아.
+                    engExample: I like spring.
+                    isSaved: true
+                  - id: 4
+                    kor: 거리
+                    eng: street
+                    korExample: 거리
+                    engExample: street
+                    isSaved: false
+                  - id: 5
+                    kor: 발자국
+                    eng: footprint
+                    korExample: 발자국
+                    engExample: footprint
+                    isSaved: false
+                  - id: 6
+                    kor: 비
+                    eng: rain
+                    korExample: 비가 와요.
+                    engExample: It's raining.
+                    isSaved: true
+              message:
+                type: string
+                example: 요청 성공
+    400:
+      $ref: '../openapi.yaml#/components/responses/BadRequest'
+    500:
+      $ref: '../openapi.yaml#/components/responses/InternalServerError'             

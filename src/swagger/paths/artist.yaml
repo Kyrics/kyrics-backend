@@ -1,0 +1,92 @@
+get:
+  summary: 해당 id의 가수의 노래들을 가져옵니다.
+  parameters:
+    - in: path
+      name: id
+      schema:
+        type: integer
+      required: true
+      example: 1
+      description: 정보를 가져오길 원하는 가수의 id
+  responses:
+    200:
+      description: 요청 성공
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: number
+                example: 200
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      description: artist의 id
+                      type: number
+                    name:
+                      description: artist의 이름
+                      type: string
+                    backgroundImage:
+                      description: artist의 프로필 이미지
+                      type: string
+                    logo:
+                      description: artist의 로고 이미지
+                      type: string
+                    songs:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            description: 노래의 id
+                            type: number
+                          title:
+                            description: 노래의 제목
+                            type: string
+                          artist:
+                            description: 노래의 가수
+                            type: array
+                            items:
+                              type: string
+                          albumImage:
+                            description: 노래의 앨범 커버 이미지
+                            type: string
+                example:
+                  - id: 1
+                    name: BTS
+                    backgroundImage: https://img.hankyung.com/photo/201908/c05e2425a01667953569fc908e0be320.jpg
+                    logo: https://1000logos.net/wp-content/uploads/2018/03/BTS_Logo.png
+                    songs:
+                      - id: 1
+                        title: BTS, THE BEST
+                        artist: 
+                          - BTS
+                        albumImage: https://w.namu.la/s/b5ef5b17ec697c4a13696548d59e500f735196bb0aab4a06d8a4f5d8a763e19a88cd54219dcf3cbe21cb6146ef204bad0c162f04261dc3f56a5ec1e8697b40a90f4a4d6ec942b73c17fcba03bd861a9400469841f592eb7056b538f0992371b5cf9c712083407c9d40c751f3ad97d1fc
+                      - id: 2
+                        title: Butter
+                        artist: 
+                          - BTS
+                        albumImage: https://upload.wikimedia.org/wikipedia/ko/thumb/d/db/BTS_-_Butter.png/220px-BTS_-_Butter.png
+                      - id: 3
+                        title: BE
+                        artist: 
+                          - BTS
+                        albumImage: https://upload.wikimedia.org/wikipedia/ko/7/75/%EB%B0%A9%ED%83%84%EC%86%8C%EB%85%84%EB%8B%A8_-_BE.jpg
+                      - id: 4
+                        title: YOU NEVER WALK ALONE
+                        artist: 
+                          - BTS
+                        albumImage: https://ww.namu.la/s/1989213e4b1473507b96f47e65ddbe22a6c633642b136177b0623b3b3f9df5ff3ffb4bed7fc6f1fff6e308b3f8798cd85f1de1478b828a976fdbb47a5ab144fa6b4ecb5eade60916500fa443d75de63c5c93cef55c736358d3a1578098176fa7a13542a74a966633a339433a6d993a44
+                      - id: 5
+                        title: Dynamite (DayTime Version)
+                        artist: 
+                          - BTS
+                        albumImage: https://w.namu.la/s/013e1c8e389fef56458c24922ba7c4fa3b888ec68b910a2d11d51fde073c0979fd0d5f5a49c10281721f2fde1ecbc4e406f50683b88c6a2b542eb4b1cd07b496e2f28c0c2555888044949e45ce75fff003989e924d17d6cbfdec8a2b2ac66801d9938facee32c45cbaada7c4649e1775
+    400:
+      $ref: '../openapi.yaml#/components/responses/BadRequest'
+    500:
+      $ref: '../openapi.yaml#/components/responses/InternalServerError'             
