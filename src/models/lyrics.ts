@@ -5,7 +5,7 @@ import {
     DataType
 } from 'sequelize-typescript';
 
-@Table({ tableName: 'lyrics', freezeTableName: true })
+@Table({ tableName: 'lyrics', freezeTableName: true, underscored: true})
 export default class Lyrics extends Model<Lyrics> {
     @Column({ primaryKey: true })
     id: number;

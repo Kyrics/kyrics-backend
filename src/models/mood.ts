@@ -6,7 +6,7 @@ import {
   Unique
 } from 'sequelize-typescript';
 
-@Table({ tableName: 'mood', freezeTableName: true })
+@Table({ tableName: 'mood', freezeTableName: true, underscored: true})
 export default class Mood extends Model<Mood> {
   @Column({ primaryKey: true })
   id: number;
