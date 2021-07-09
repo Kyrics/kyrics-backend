@@ -4,10 +4,8 @@ import {
   CreatedAt,
   UpdatedAt,
   Table,
-  PrimaryKey,
   DataType,
-  AutoIncrement,
-  Unique,
+  Unique
 } from 'sequelize-typescript';
 
 @Table({ tableName: 'user', freezeTableName: true })
