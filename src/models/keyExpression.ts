@@ -5,8 +5,8 @@ import {
     DataType
 } from 'sequelize-typescript';
 
-@Table({ tableName: 'lyrics', freezeTableName: true })
-export default class Lyrics extends Model<Lyrics> {
+@Table({ tableName: 'key_expression', freezeTableName: true })
+export default class KeyExpression extends Model<KeyExpression> {
     @Column({ primaryKey: true })
     id: number;
 
@@ -17,8 +17,8 @@ export default class Lyrics extends Model<Lyrics> {
     eng: string;
 
     @Column(DataType.TEXT)
-    startTime: string;
+    korExample: string;
 
     @Column(DataType.TEXT)
-    duration: string;
+    engExample: string;
 }
