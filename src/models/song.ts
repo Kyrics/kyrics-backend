@@ -1,14 +1,15 @@
 import {
   Model,
   Column,
+  PrimaryKey,
+  DataType,
   CreatedAt,
   UpdatedAt,
   Table,
-  PrimaryKey,
   ForeignKey,
   BelongsTo,
   HasMany,
-  BelongsToMany,
+  BelongsToMany
 } from 'sequelize-typescript';
 import User from './user';
 import Album from './album';
@@ -21,9 +22,27 @@ import SongArtist from './songArtist';
 
 @Table({ tableName: 'song', freezeTableName: true, underscored: true })
 export default class Song extends Model<Song> {
-  @Column
   @PrimaryKey
+  @Column
   id: number;
+
+  @Column(DataType.TEXT)
+  title: string;
+
+  @Column(DataType.TEXT)
+  youtubeUrl: string;
+
+  @Column(DataType.TEXT)
+  korLyrics: string;
+
+  @Column(DataType.TEXT)
+  engLyrics: string;
+
+  @Column(DataType.TEXT)
+  lyricsStartTime: string;
+
+  @Column(DataType.TEXT)
+  lyricsDuration: string;
 
   @CreatedAt
   @Column

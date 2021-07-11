@@ -1,9 +1,16 @@
 import { Sequelize } from 'sequelize-typescript';
 import dotenv from 'dotenv';
-import User from './user';
-import Mood from './mood';
-import Lyrics from './lyrics';
+import Album from './album';
+import AlbumArtist from './albumArtist';
+import Artist from './artist';
 import KeyExpression from './keyExpression';
+import Mood from './mood';
+import MySongs from './mySongs';
+import MyVocab from './myVocab';
+import Song from './song';
+import SongArtist from './songArtist';
+import SongMood from './songMood';
+import User from './user';
 
 dotenv.config();
 
@@ -15,9 +22,7 @@ const sequelize = new Sequelize({
   password: process.env.DB_PASSWORD,
 });
 
-sequelize.addModels([User]);
-sequelize.addModels([Mood]);
-sequelize.addModels([Lyrics]);
-sequelize.addModels([KeyExpression]);
+sequelize.addModels([Album, AlbumArtist, Artist, KeyExpression, Mood, MySongs, MyVocab, Song, SongArtist, SongMood, User]);
 
+export {Album, AlbumArtist, Artist, KeyExpression, Mood, MySongs, MyVocab, Song, SongArtist, SongMood, User};
 export default sequelize;

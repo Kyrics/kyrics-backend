@@ -1,4 +1,4 @@
-import { Model, Column, Table, ForeignKey } from 'sequelize-typescript';
+import { Model, Column, Table, ForeignKey} from 'sequelize-typescript';
 import Song from './song';
 import Mood from './mood';
 

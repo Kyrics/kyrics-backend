@@ -6,7 +6,8 @@ import {
   Table,
   DataType,
   Unique,
-  BelongsToMany
+  BelongsToMany,
+  PrimaryKey
 } from 'sequelize-typescript';
 import Song from './song';
 import MySongs from './mySongs';
@@ -15,7 +16,8 @@ import MyVocab from './myVocab';
 
 @Table({ tableName: 'user', freezeTableName: true, underscored: true})
 export default class User extends Model<User> {
-  @Column({ primaryKey: true })
+  @PrimaryKey
+  @Column
   id: number;
 
   @Column(DataType.TEXT)
