@@ -15,7 +15,7 @@ import KeyExpression from './keyExpression';
 import MyVocab from './myVocab';
 
 @Table({ tableName: 'user', freezeTableName: true, underscored: true })
-export default class User extends Model<User> {
+export default class User extends Model {
   @PrimaryKey
   @Column
   id: number;

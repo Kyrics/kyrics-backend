@@ -9,7 +9,7 @@ import {
   ForeignKey,
   BelongsTo,
   HasMany,
-  BelongsToMany
+  BelongsToMany,
 } from 'sequelize-typescript';
 import User from './user';
 import Album from './album';
@@ -21,7 +21,7 @@ import MySongs from './mySongs';
 import SongArtist from './songArtist';
 
 @Table({ tableName: 'song', freezeTableName: true, underscored: true })
-export default class Song extends Model<Song> {
+export default class Song extends Model {
   @PrimaryKey
   @Column
   id: number;
