@@ -30,10 +30,13 @@ get:
                     name:
                       description: artist의 이름
                       type: string
-                    backgroundImage:
+                    profileImageUrl:
                       description: artist의 프로필 이미지
                       type: string
-                    logo:
+                    backgroundImageUrl:
+                      description: artist의 배경 이미지
+                      type: string
+                    logoImageUrl:
                       description: artist의 로고 이미지
                       type: string
                     songs:
