@@ -55,7 +55,7 @@ get:
                             type: array
                             items:
                               type: string
-                          albumImage:
+                          albumImageUrl:
                             description: 노래의 앨범 커버 이미지
                             type: string
                 example:
