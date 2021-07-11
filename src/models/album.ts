@@ -1,36 +1,23 @@
-/* eslint-disable @typescript-eslint/ban-types */
-import { BuildOptions, DataTypes, Model, Sequelize } from "sequelize";
+import { Model, Column, Table, PrimaryKey, DataType, HasMany, BelongsToMany } from 'sequelize-typescript';
+import Artist from './artist';
+import Song from './song';
+import AlbumArtist from './albumArtist';
 
-export interface AlbumAttributes {
-    id: number;
-    title: string; 
-    image: string;
-}
-export interface AlbumModel extends Model<AlbumAttributes>, AlbumAttributes {}
-export class Album extends Model<AlbumModel, AlbumAttributes> {}
+@Table({ tableName: 'album', freezeTableName: true })
+export default class Album extends Model<Album> {
+  @Column
+  @PrimaryKey
+  id: number;
 
-export type AlbumStatic = typeof Model & {
-    new (value?: object, options?: BuildOptions): AlbumModel;
-};
+  @Column(DataType.CHAR(100))
+  name: string;
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export function albumFactory (sequelize: Sequelize) {
-    return <AlbumStatic>sequelize.define("albums",
-    {
-        id: {
-            type: DataTypes.INTEGER,
-            autoIncrement: true,
-            primaryKey: true,
-        },
-        title: {
-            type: DataTypes.CHAR,
-            allowNull: false,
-        },
-        image_url: {
-            type: DataTypes.CHAR,
-        },
-    }, {
-        freezeTableName: true,
-        timestamps: false
-    });
+  @Column(DataType.TEXT)
+  albumImageUrl: string;
+
+  @HasMany(() => Song)
+  songs: Song[];
+
+  @BelongsToMany(() => Artist, () => AlbumArtist)
+  artist: Artist[];
 }
