@@ -7,14 +7,14 @@ import {
   DataType,
   Unique,
   BelongsToMany,
-  PrimaryKey
+  PrimaryKey,
 } from 'sequelize-typescript';
 import Song from './song';
 import MySongs from './mySongs';
 import KeyExpression from './keyExpression';
 import MyVocab from './myVocab';
 
-@Table({ tableName: 'user', freezeTableName: true, underscored: true})
+@Table({ tableName: 'user', freezeTableName: true, underscored: true })
 export default class User extends Model<User> {
   @PrimaryKey
   @Column
@@ -24,7 +24,7 @@ export default class User extends Model<User> {
   socialId: string;
 
   @Unique
-  @Column(DataType.CHAR(320))
+  @Column
   email: string;
 
   @Column(DataType.CHAR(100))

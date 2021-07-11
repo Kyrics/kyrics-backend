@@ -6,6 +6,11 @@ import swaggerUI from 'swagger-ui-express';
 import sequelize from './models';
 
 dotenv.config();
+
+sequelize.sync({ force: false }).catch((error) => {
+  console.error(error);
+});
+
 const app = express();
 const swaggerSpec = YAML.load(path.join(__dirname, '../build/swagger.yaml'));
 
