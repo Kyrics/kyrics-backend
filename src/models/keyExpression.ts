@@ -3,7 +3,7 @@ import Song from './song';
 import MyVocab from './myVocab';
 import User from './user';
 
-@Table({ tableName: 'key_expression', freezeTableName: true, underscored: true })
+@Table({ tableName: 'key_expression', freezeTableName: true, underscored: true, timestamps: false })
 export default class KeyExpression extends Model {
   @PrimaryKey
   @Column

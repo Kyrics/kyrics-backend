@@ -2,7 +2,7 @@ import { Model, Column, Table, DataType, Unique, BelongsToMany, PrimaryKey } fro
 import Song from './song';
 import SongMood from './songMood';
 
-@Table({ tableName: 'mood', freezeTableName: true, underscored: true })
+@Table({ tableName: 'mood', freezeTableName: true, underscored: true, timestamps: false })
 export default class Mood extends Model {
   @PrimaryKey
   @Column
