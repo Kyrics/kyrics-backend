@@ -3,7 +3,7 @@ import Song from './song';
 import SongMood from './songMood';
 
 @Table({ tableName: 'mood', freezeTableName: true, underscored: true })
-export default class Mood extends Model<Mood> {
+export default class Mood extends Model {
   @PrimaryKey
   @Column
   id: number;

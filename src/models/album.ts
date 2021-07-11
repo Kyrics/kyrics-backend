@@ -4,7 +4,7 @@ import Song from './song';
 import AlbumArtist from './albumArtist';
 
 @Table({ tableName: 'album', freezeTableName: true })
-export default class Album extends Model<Album> {
+export default class Album extends Model {
   @PrimaryKey
   @Column
   id: number;

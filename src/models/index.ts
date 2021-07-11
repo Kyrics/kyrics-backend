@@ -22,7 +22,19 @@ const sequelize = new Sequelize({
   password: process.env.DB_PASSWORD,
 });
 
-sequelize.addModels([Album, AlbumArtist, Artist, KeyExpression, Mood, MySongs, MyVocab, Song, SongArtist, SongMood, User]);
+sequelize.addModels([
+  Album,
+  AlbumArtist,
+  Artist,
+  KeyExpression,
+  Mood,
+  MySongs,
+  MyVocab,
+  Song,
+  SongArtist,
+  SongMood,
+  User,
+]);
 
-export {Album, AlbumArtist, Artist, KeyExpression, Mood, MySongs, MyVocab, Song, SongArtist, SongMood, User};
+export { Album, AlbumArtist, Artist, KeyExpression, Mood, MySongs, MyVocab, Song, SongArtist, SongMood, User };
 export default sequelize;

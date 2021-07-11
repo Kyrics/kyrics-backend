@@ -3,7 +3,7 @@ import User from './user';
 import Song from './song';
 
 @Table({ tableName: 'my_songs', freezeTableName: true, underscored: true })
-export default class MySongs extends Model<MySongs> {
+export default class MySongs extends Model {
   @ForeignKey(() => User)
   @Column
   userId: number;
