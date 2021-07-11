@@ -5,7 +5,8 @@ import {
     DataType,
     ForeignKey,
     BelongsTo,
-    BelongsToMany
+    BelongsToMany,
+    PrimaryKey
 } from 'sequelize-typescript';
 import Song from './song';
 import MyVocab from './myVocab';
@@ -13,7 +14,8 @@ import User from './user';
 
 @Table({ tableName: 'key_expression', freezeTableName: true, underscored: true})
 export default class KeyExpression extends Model<KeyExpression> {
-    @Column({ primaryKey: true })
+    @PrimaryKey
+    @Column
     id: number;
 
     @Column(DataType.TEXT)
