@@ -2,8 +2,14 @@ import {
     Model,
     Column,
     Table,
-    DataType
+    DataType,
+    ForeignKey,
+    BelongsTo,
+    BelongsToMany
 } from 'sequelize-typescript';
+import Song from './song';
+import MyVocab from './myVocab';
+import User from './user';
 
 @Table({ tableName: 'key_expression', freezeTableName: true, underscored: true})
 export default class KeyExpression extends Model<KeyExpression> {
@@ -21,4 +27,14 @@ export default class KeyExpression extends Model<KeyExpression> {
 
     @Column(DataType.TEXT)
     engExample: string;
+
+    @ForeignKey(() => Song)
+    @Column
+    songId: number;
+
+    @BelongsTo(() => Song)
+    song: Song;
+
+    @BelongsToMany(() => User, () => MyVocab)
+    users: User[];
 }

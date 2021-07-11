@@ -5,8 +5,13 @@ import {
   UpdatedAt,
   Table,
   DataType,
-  Unique
+  Unique,
+  BelongsToMany
 } from 'sequelize-typescript';
+import Song from './song';
+import MySongs from './mySongs';
+import KeyExpression from './keyExpression';
+import MyVocab from './myVocab';
 
 @Table({ tableName: 'user', freezeTableName: true, underscored: true})
 export default class User extends Model<User> {
@@ -33,4 +38,10 @@ export default class User extends Model<User> {
   @UpdatedAt
   @Column
   updatedAt!: Date;
+
+  @BelongsToMany(() => Song, () => MySongs)
+  songs: Song[];
+
+  @BelongsToMany(() => KeyExpression, () => MyVocab)
+  keyExpressions: KeyExpression[];
 }
