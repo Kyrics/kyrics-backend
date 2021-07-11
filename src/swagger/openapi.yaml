@@ -10,22 +10,24 @@ security:
     - read
     - write
 paths:
-  /song/:id:
-    $ref: './paths/song.yaml'
   /artists:
     $ref: './paths/artists.yaml'
   /artist/:id:
     $ref: './paths/artist.yaml'
+  /song/:id:
+    $ref: './paths/song.yaml'
   /song/:id/vocab:
     $ref: './paths/key-expression.yaml'
-  /song/:id/vocab/:id:
-    $ref: './paths/user-one-vocab.yaml'
   /user:
     $ref: './paths/user.yaml'
   /user/song:
     $ref: './paths/user-song.yaml'
   /user/song/:id:
     $ref: './paths/user-one-song.yaml'
+  /user/vocab:
+    $ref: './paths/user-vocab.yaml'
+  /user/vocab/:id:
+    $ref: './paths/user-one-vocab.yaml'
 components:
   securitySchemes:
     Authorization:
