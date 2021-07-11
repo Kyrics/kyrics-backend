@@ -6,8 +6,8 @@ import SongArtist from './songArtist';
 
 @Table({ tableName: 'artist', freezeTableName: true })
 export default class Artist extends Model<Artist> {
-  @Column
   @PrimaryKey
+  @Column
   id: number;
 
   @Column(DataType.CHAR(100))

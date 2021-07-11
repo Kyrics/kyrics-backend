@@ -5,8 +5,8 @@ import AlbumArtist from './albumArtist';
 
 @Table({ tableName: 'album', freezeTableName: true })
 export default class Album extends Model<Album> {
-  @Column
   @PrimaryKey
+  @Column
   id: number;
 
   @Column(DataType.CHAR(100))

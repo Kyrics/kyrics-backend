@@ -46,7 +46,7 @@ export default class Song extends Model<Song> {
   @BelongsToMany(() => User, () => MySongs)
   users: User[];
 
-  @HasMany(() => Artist, () => SongArtist)
+  @BelongsToMany(() => Artist, () => SongArtist)
   artists: Artist[];
 
   @HasMany(() => KeyExpression)
