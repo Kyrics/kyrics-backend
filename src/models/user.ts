@@ -23,7 +23,6 @@ export default class User extends Model {
   @Column(DataType.TEXT)
   socialId: string;
 
-  @Unique
   @Column
   email: string;
 
@@ -32,6 +31,9 @@ export default class User extends Model {
 
   @Column(DataType.TEXT)
   profileImageUrl: string;
+
+  @Column(DataType.ENUM('Google', 'Facebook'))
+  socialType: 'Google' | 'Facebook';
 
   @CreatedAt
   @Column
