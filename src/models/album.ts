@@ -3,7 +3,7 @@ import Artist from './artist';
 import Song from './song';
 import AlbumArtist from './albumArtist';
 
-@Table({ tableName: 'album', freezeTableName: true, timestamps: false })
+@Table({ tableName: 'album', freezeTableName: true, underscored: true, timestamps: false })
 export default class Album extends Model {
   @PrimaryKey
   @Column
