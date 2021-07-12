@@ -27,4 +27,30 @@ const deleteMySong = async (id: number, userId: number): Promise<number | Error>
   }
 };
 
-export { createMySong, deleteMySong };
+const createMyVocab = async (id: number, userId: number): Promise<MyVocab | Error> => {
+    try {
+      const createMyVocabRes = await MyVocab.create({
+        userId,
+        keyExpressionId: id,
+      });
+      return createMyVocabRes;
+    } catch (error) {
+      return error;
+    }
+  };
+  
+  const deleteMyVocab = async (id: number, userId: number): Promise<number | Error> => {
+    try {
+      const destroyMyVocabRes = await MyVocab.destroy({
+        where: {
+          userId,
+          keyExpressionId: id,
+        },
+      });
+      return destroyMyVocabRes;
+    } catch (error) {
+      return error;
+    }
+  };
+
+export { createMySong, deleteMySong, createMyVocab, deleteMyVocab };
