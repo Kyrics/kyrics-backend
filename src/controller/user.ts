@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import statusCode from '../module/statusCode';
-import { createMySong, deleteMySong, createMyVocab, deleteMyVocab } from '../service/user';
+import { createMySong, deleteMySong, createMyVocab } from '../service/user';
 
 const postMySong = async (req: Request, res: Response) => {
   const { id } = req.params;
@@ -73,29 +73,5 @@ const postMyVocab = async (req: Request, res: Response) => {
       });
     }
   };
-  
-  const removeMyVocab = async (req: Request, res: Response) => {
-    const { id } = req.params;
-    const { userId } = req.body;
-    if (!id || !userId) {
-      return res.json({
-        status: statusCode.BAD_REQUEST,
-        message: '필요한 값이 없습니다.',
-      });
-    }
-    try {
-      await deleteMyVocab(+id, userId);
-      return res.json({
-        status: statusCode.OK,
-        message: '삭제 성공',
-      });
-    } catch (error) {
-      console.error(error);
-      return res.json({
-        status: statusCode.INTERNAL_SERVER_ERROR,
-        message: '서버 내부 에러',
-      });
-    }
-  };
 
-export { postMySong, removeMySong, postMyVocab, removeMyVocab };
+export { postMySong, removeMySong, postMyVocab };
