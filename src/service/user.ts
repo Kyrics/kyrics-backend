@@ -45,7 +45,6 @@ const deleteUser = async (userId: number): Promise<number | Error> => {
 
 const updateUserEmail = async (userId: number, newEmail: string): Promise<[number, User[]] | Error> => {
   try {
-      console.log(newEmail);
       const userUpdateRes = await User.update({
         email: newEmail},
       {where: {
@@ -57,20 +56,17 @@ const updateUserEmail = async (userId: number, newEmail: string): Promise<[numbe
   }
 };
 
-const readMySongs = async(userId: number): Promise<IMySongsRes | Error> => {
+const readMySongs = async(userId: number): Promise<IMySongsRes[] | Error> => {
   try{
-    const readMySongsQuery = ``;
-    const readMySongss = await sequelize.query(readMySongsQuery, { type: QueryTypes.SELECT }) as IMySongsRes[];
-    // const readMySongsRes = await MySongs.findOne({
-    //   where: {id: userId},
-    //   attributes: ['id', `name`, `email`, `profileImageUrl`]
-    // })
-    return {
-      id: 1,
-      title: "bts",
-      artists: ["bts"],
-      albumImageUrl: "url"
-    }
+    const readMySongsQuery = `SELECT my_songs.song_id, song.title, artist.\`name\`, album.album_image_url
+    FROM my_songs
+    LEFT OUTER JOIN song ON (my_songs.song_id = song.id)
+    LEFT OUTER JOIN album ON (song.album_id = album.id)
+    INNER JOIN song_artist ON (song.id = song_artist.song_id)
+    INNER JOIN artist ON (song_artist.artist_id = artist.id)
+    WHERE my_songs.user_id = ${userId};`;
+    const readMySongsRes = await sequelize.query(readMySongsQuery, { type: QueryTypes.SELECT }) as IMySongsRes[];
+    return readMySongsRes;
   } catch(error){
     return error;
   }

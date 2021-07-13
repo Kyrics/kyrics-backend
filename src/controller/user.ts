@@ -63,7 +63,6 @@ const modifyUserEmail = async (req: Request, res: Response) => {
 const getMySongs = async (req: Request, res: Response) => {
   // 토큰으로 대체
   const { userId } = req.body;
-  console.log(userId);
   try {
     const readMySongsRes = await readMySongs(userId);
     return res.json({
