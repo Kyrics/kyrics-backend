@@ -17,6 +17,7 @@ const swaggerSpec = YAML.load(path.join(__dirname, '../build/swagger.yaml'));
 
 app.use(express.urlencoded());
 app.use(express.json());
+
 app.use('/', router);
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 app.use('/health-check', (req, res) => {
