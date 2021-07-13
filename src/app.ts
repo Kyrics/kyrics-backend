@@ -4,6 +4,7 @@ import path from 'path';
 import YAML from 'yamljs';
 import swaggerUI from 'swagger-ui-express';
 import sequelize from './models';
+import router from './router';
 
 dotenv.config();
 
@@ -16,6 +17,7 @@ const swaggerSpec = YAML.load(path.join(__dirname, '../build/swagger.yaml'));
 
 app.use(express.urlencoded());
 app.use(express.json());
+app.use('/', router);
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 app.use('/health-check', (req, res) => {
   res.status(200).json({
