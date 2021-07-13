@@ -28,7 +28,7 @@ get:
                   title:
                     description: song의 title
                     type: string
-                  atrist:
+                  artist:
                     description: song의 artist
                     type: string
                   albumImageUrl:
@@ -45,7 +45,7 @@ get:
                     items:
                       type: object
                       properties:
-                        starttime:
+                        startTime:
                           description: 가사 시작 시간
                           type: number
                         duration:
@@ -59,261 +59,261 @@ get:
                           type: string
                 example:
                   # Properties of the referenced object
-                  id: 1
-                  title: Life Goes On
-                  artist: BTS
-                  albumImageUrl: https://upload.wikimedia.org/wikipedia/ko/7/75/%EB%B0%A9%ED%83%84%EC%86%8C%EB%85%84%EB%8B%A8_-_BE.jpg
-                  youtubeUrl: https://www.youtube.com/watch?v=-5q5mZbe3V8
-                  isSaved: true
-                  lyrics:
-                    - startTime: 20.102
-                      duration: 2.618
-                      kor: 어느 날 세상이 멈췄어    
+                    id: 1
+                    title: Life Goes On
+                    youtubeUrl: https://www.youtube.com/watch?v=-5q5mZbe3V8
+                    artist: BTS
+                    albumImageUrl: https://kyrics.s3.ap-northeast-2.amazonaws.com/album/1.png
+                    isSaved: true
+                    lyrics:
+                    - startTime: '20.102'
+                      duration: '2.618'
+                      kor: 어느 날 세상이 멈췄어
                       eng: One day the world stopped
-                    - startTime: 22.72
-                      duration: 3.264
-                      kor: 아무런 예고도 하나 없이  
-                      eng: Without any warning      
-                    - startTime: 25.984
-                      duration: 3.089
-                      kor: 봄은 기다림을 몰라서     
+                    - startTime: '22.72'
+                      duration: '3.264'
+                      kor: 아무런 예고도 하나 없이
+                      eng: Without any warning
+                    - startTime: '25.984'
+                      duration: '3.089'
+                      kor: 봄은 기다림을 몰라서
                       eng: Because spring doesn't know to wait
-                    - startTime: 29.073
-                      duration: 3.129
+                    - startTime: '29.073'
+                      duration: '3.129'
                       kor: 눈치 없이 와버렸어
                       eng: It came without care
-                    - startTime: 32.202
-                      duration: 2.499
+                    - startTime: '32.202'
+                      duration: '2.499'
                       kor: 발자국이 지워진 거리
                       eng: Street where footprints have been erased
-                    - startTime: 34.701
-                      duration: 3.417
+                    - startTime: '34.701'
+                      duration: '3.417'
                       kor: 여기 넘어져있는 나
                       eng: I fell here, lying on the ground
-                    - startTime: 38.118
-                      duration: 2.654
+                    - startTime: '38.118'
+                      duration: '2.654'
                       kor: 혼자 가네 시간이
                       eng: Time goes by on its own
-                    - startTime: 40.772
-                      duration: 3.619
+                    - startTime: '40.772'
+                      duration: '3.619'
                       kor: 미안해 말도 없이
                       eng: Without a word
-                    - startTime: 44.391
-                      duration: 2.364
-                      kor:
-                      eng:
-                    - startTime: 46.755
-                      duration: 1.691
+                    - startTime: '44.391'
+                      duration: '2.364'
                       kor: 오늘도 비가 내릴 것 같아
                       eng: I think it will rain today
-                    - startTime: 48.446
-                      duration: 1.64
+                    - startTime: '46.755'
+                      duration: '1.691'
                       kor: 흠뻑 젖어버렸네
                       eng: I'm drenched
-                    - startTime: 50.086
-                      duration: 2.704
+                    - startTime: '48.446'
+                      duration: '1.64'
                       kor: 아직도 멈추질 않아
                       eng: Still won't stop
-                    - startTime: 52.79
-                      duration: 1.523
+                    - startTime: '50.086'
+                      duration: '2.704'
                       kor: 저 먹구름보다 빨리 달려가
                       eng: I run faster than those dark clouds
-                    - startTime: 54.313
-                      duration: 1.878
+                    - startTime: '52.79'
+                      duration: '1.523'
                       kor: 그럼 될 줄 알았는데
                       eng: Then I thought it would be
-                    - startTime: 56.191
-                      duration: 0.964
+                    - startTime: '54.313'
+                      duration: '1.878'
                       kor: 나 겨우 사람인가 봐
                       eng: Guess I'm just a human
-                    - startTime: 57.155
-                      duration: 2.165
+                    - startTime: '56.191'
+                      duration: '0.964'
                       kor: 몹시 아프네
                       eng: I feel very sick
-                    - startTime: 59.32
-                      duration: 2.829
+                    - startTime: '57.155'
+                      duration: '2.165'
                       kor: 세상이란 놈이 준 감기
                       eng: The cold that the world gave me
-                    - startTime: 62.149
-                      duration: 2.935
+                    - startTime: '59.32'
+                      duration: '2.829'
                       kor: 덕분에 눌러보는 먼지 쌓인 되감기
                       eng: A dusty rewind that I press thanks to the cold
-                    - startTime: 65.084
-                      duration: 1.824
+                    - startTime: '62.149'
+                      duration: '2.935'
                       kor: 넘어진 채 청하는 엇박자의 춤
                       eng: A dance of the wrong beat I ask for while falling down
-                    - startTime: 66.908
-                      duration: 1.254
+                    - startTime: '65.084'
+                      duration: '1.824'
                       kor: 겨울이 오면 내쉬자
                       eng: When winter comes, let's exhale
-                    - startTime: 69.048
-                      duration: 2.764
+                    - startTime: '66.908'
+                      duration: '1.254'
                       kor: 더 뜨거운 숨
                       eng: A hotter breath
-                    - startTime: 71.812
-                      duration: 3.21
-                      kor:
-                      eng:
-                    - startTime: 75.022
-                      duration: 5.213
+                    - startTime: '69.048'
+                      duration: '2.764'
                       kor: 끝이 보이지 않아
                       eng: I can't see the end
-                    - startTime: 80.956
-                      duration: 2.873
+                    - startTime: '71.812'
+                      duration: '3.21'
                       kor: 출구가 있긴 할까
                       eng: Is there even an exit
-                    - startTime: 83.829
-                      duration: 3.122
+                    - startTime: '75.022'
+                      duration: '5.213'
                       kor: 발이 떼지질 않아 않아 oh
                       eng: I can't take my feet off oh
-                    - startTime: 86.951
-                      duration: 4.342
+                    - startTime: '80.956'
+                      duration: '2.873'
                       kor: 잠시 두 눈을 감아
                       eng: Close your eyes for a moment
-                    - startTime: 91.293
-                      duration: 2.877
+                    - startTime: '83.829'
+                      duration: '3.122'
                       kor: 여기 내 손을 잡아
                       eng: Hold my hand here
-                    - startTime: 94.17
-                      duration: 3.051
+                    - startTime: '86.951'
+                      duration: '4.342'
                       kor: 저 미래로 달아나자
                       eng: Let's run away to that future
-                    - startTime: 97.221
-                      duration: 3.527
-                      kor:
-                      eng:
-                    - startTime: 100.748
-                      duration: 2.395
+                    - startTime: '91.293'
+                      duration: '2.877'
                       kor: Like an echo in the forest
                       eng: Like an echo in the forest
-                    - startTime: 103.143
-                      duration: 2.882
+                    - startTime: '94.17'
+                      duration: '3.051'
                       kor: 하루가 돌아오겠지
                       eng: One day will come
-                    - startTime: 106.025
-                      duration: 3.004
+                    - startTime: '97.221'
+                      duration: '3.527'
                       kor: 아무 일도 없단 듯이
                       eng: As if nothing happened
-                    - startTime: 109.029
-                      duration: 3.577
+                    - startTime: '100.748'
+                      duration: '2.395'
                       kor: Yeah life goes on
                       eng: Yeah life goes on
-                    - startTime: 112.606
-                      duration: 1.931
+                    - startTime: '103.143'
+                      duration: '2.882'
                       kor: Like an arrow in the blue sky
                       eng: Like an arrow in the blue sky
-                    - startTime: 114.537
-                      duration: 1.489
+                    - startTime: '106.025'
+                      duration: '3.004'
                       kor: 또 하루 더 날아가지
                       eng: One more day to fly
-                    - startTime: 116.026
-                      duration: 2.919
+                    - startTime: '109.029'
+                      duration: '3.577'
                       kor: On my pillow, on my table
                       eng: On my pillow, on my table
-                    - startTime: 118.945
-                      duration: 2.88
+                    - startTime: '112.606'
+                      duration: '1.931'
                       kor: Yeah life goes on
                       eng: Yeah life goes on
-                    - startTime: 124.321
-                      duration: 1.487
+                    - startTime: '114.537'
+                      duration: '1.489'
                       kor: Like this again
                       eng: Like this again
-                    - startTime: 125.808
-                      duration: 1.931
-                      kor:
-                      eng:
-                    - startTime: 127.739
-                      duration: 2.963
+                    - startTime: '116.026'
+                      duration: '2.919'
                       kor: 이 음악을 빌려 너에게 나 전할게
                       eng: I will borrow this music and tell you
-                    - startTime: 130.702
-                      duration: 3.086
+                    - startTime: '118.945'
+                      duration: '2.88'
                       kor: 사람들은 말해 세상이 다 변했대
                       eng: People say the world has changed
-                    - startTime: 135.435
-                      duration: 2.471
+                    - startTime: '124.321'
+                      duration: '1.487'
                       kor: 다행히도 우리 사이는
                       eng: Fortunately, between us
-                    - startTime: 137.906
-                      duration: 1.637
+                    - startTime: '125.808'
+                      duration: '1.931'
                       kor: 아직 여태 안 변했네
                       eng: Still nothing hasn't changed
-                    - startTime: 140.168
-                      duration: 2.97
-                      kor:
-                      eng:
-                    - startTime: 143.138
-                      duration: 2.957
+                    - startTime: '127.739'
+                      duration: '2.963'
                       kor: 늘 하던 시작과 끝 ‘안녕’이란 말로
                       eng: The beginning and the end that we always faced, with the word ‘annyeong’
-                    - startTime: 146.095
-                      duration: 5.728
+                    - startTime: '130.702'
+                      duration: '3.086'
                       kor: 오늘과 내일을 또 함께 이어보자고
                       eng: Let's connect today and tomorrow together again
-                    - startTime: 151.823
-                      duration: 3.034
+                    - startTime: '135.435'
+                      duration: '2.471'
                       kor: 멈춰있지만 어둠에 숨지 마
                       eng: Staying still but don't hide in the dark
-                    - startTime: 154.857
-                      duration: 3.212
+                    - startTime: '137.906'
+                      duration: '1.637'
                       kor: 빛은 또 떠오르니깐
                       eng: The light rises again
-                    - startTime: 158.069
-                      duration: 4.772
-                      kor:
-                      eng:
-                    - startTime: 177.11
-                      duration: 2.943
+                    - startTime: '140.168'
+                      duration: '2.97'
                       kor: 끝이 보이지 않아
                       eng: I can't see the end
-                    - startTime: 180.053
-                      duration: 2.868
+                    - startTime: '143.138'
+                      duration: '2.957'
                       kor: 출구가 있긴 할까
                       eng: Is there even an exit
-                    - startTime: 182.921
-                      duration: 3.412
+                    - startTime: '146.095'
+                      duration: '5.728'
                       kor: 발이 떼지질 않아 않아 oh
                       eng: I can't take my feet off oh
-                    - startTime: 186.333
-                      duration: 2.622
+                    - startTime: '151.823'
+                      duration: '3.034'
                       kor: 잠시 두 눈을 감아
                       eng: Close your eyes for a moment
-                    - startTime: 188.955
-                      duration: 2.783
+                    - startTime: '154.857'
+                      duration: '3.212'
                       kor: 여기 내 손을 잡아
                       eng: Hold my hand here
-                    - startTime: 191.738
-                      duration: 2.954
+                    - startTime: '158.069'
+                      duration: '4.772'
                       kor: 저 미래로 달아나자
                       eng: Let's run away to that future
-                    - startTime: 194.692
-                      duration: 3.787
-                      kor:
-                      eng:  
-                    - startTime: 198.479
-                      duration: 1.88
+                    - startTime: '177.11'
+                      duration: '2.943'
                       kor: Like an echo in the forest
                       eng: Like an echo in the forest
-                    - startTime: 200.359
-                      duration: 1.388
+                    - startTime: '180.053'
+                      duration: '2.868'
                       kor: 하루가 돌아오겠지
                       eng: One day will come
-                    - startTime: 201.747
-                      duration: 2.399
+                    - startTime: '182.921'
+                      duration: '3.412'
                       kor: 아무 일도 없단 듯이
                       eng: As if nothing happened
-                    - startTime: 207.865
-                      duration: 2.226
+                    - startTime: '186.333'
+                      duration: '2.622'
                       kor: Yeah life goes on
                       eng: Yeah life goes on
-                    - startTime: 213.619
-                      duration: 2.579
+                    - startTime: '188.955'
+                      duration: '2.783'
                       kor: Like an arrow in the blue sky
                       eng: Like an arrow in the blue sky
-                    - startTime: 219.823
-                      duration: 2.156
+                    - startTime: '191.738'
+                      duration: '2.954'
                       kor: 또 하루 더 날아가지
                       eng: One more day to fly
+                    - startTime: '194.692'
+                      duration: '3.787'
+                      kor: On my pillow, on my table
+                      eng: On my pillow, on my table
+                    - startTime: '198.479'
+                      duration: '1.88'
+                      kor: Yeah life goes on
+                      eng: Yeah life goes on
+                    - startTime: '200.359'
+                      duration: '1.388'
+                      kor: Like this again
+                      eng: Like this again
+                    - startTime: '201.747'
+                      duration: '2.399'
+                      kor: I remember
+                      eng: I remember
+                    - startTime: '207.865'
+                      duration: '2.226'
+                      kor: I remember
+                      eng: I remember
+                    - startTime: '213.619'
+                      duration: '2.579'
+                      kor: I remember
+                      eng: I remember
+                    - startTime: '219.823'
+                      duration: '2.156'
+                      kor: I remember
+                      eng: I remember
               message:
                 type: string
                 example: 요청 성공
