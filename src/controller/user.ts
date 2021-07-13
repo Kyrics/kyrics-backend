@@ -8,6 +8,12 @@ const getUser = async (req: Request, res: Response) => {
   console.log(userId);
   try {
     const readUserRes = await readUser(userId);
+    if (!readUserRes){
+      return res.json({
+        status: statusCode.BAD_REQUEST,
+        message: '유효하지 않은 아이디'
+      })
+    }
     return res.json({
       status: statusCode.OK,
       data: readUserRes,
@@ -137,7 +143,7 @@ const postMyVocab = async (req: Request, res: Response) => {
       });
     }
     try {
-      await createMyVocab(+id, userId); // createMyVocab이 실패하면 에러를 던지게 한다.
+      await createMyVocab(+id, userId);
       return res.json({
         status: statusCode.OK,
         message: '요청 성공',

@@ -5,10 +5,13 @@ import { readSong, readVocabs } from '../service/song';
 const getSong = async (req: Request, res: Response) => {
     const { id } = req.params;
     const { userId } = req.body;
-    console.log(id);
     // user Id 토큰 확인 필요
     // 
+
+
     try {
+      // 노래 있는지 없는지 확인
+
       const readSongRes = await readSong(+id, userId);
       return res.json({
         status: statusCode.OK,
@@ -16,7 +19,6 @@ const getSong = async (req: Request, res: Response) => {
         message: '요청 성공',
       });
     } catch (error) {
-      console.error(error);
       return res.json({
         status: statusCode.INTERNAL_SERVER_ERROR,
         message: '서버 내부 오류',
@@ -36,7 +38,6 @@ const getSong = async (req: Request, res: Response) => {
         message: '요청 성공',
       });
     } catch (error) {
-      console.error(error);
       return res.json({
         status: statusCode.INTERNAL_SERVER_ERROR,
         message: '서버 내부 오류',
