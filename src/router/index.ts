@@ -1,16 +1,12 @@
 import express from 'express';
 import userRouter from './user';
 import songRouter from './song';
-// import songRouter from './song';
-// import { getMainArtists } from '../controller/artist';
-// import { createNewUser } from '../service/user';
+import artistsRouter from './artists';
 
 const router = express.Router();
 
-router.use('/user', userRouter); // 모듈 추가해주세요
+router.use('/user', userRouter);
 router.use('/song', songRouter);
-
-// router.get('/artists', getMainArtists);
-// router.post('/signup', createNewUser);
+router.use('/artists', artistsRouter);
 
 export default router;
