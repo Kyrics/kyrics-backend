@@ -10,6 +10,7 @@ import {
   BelongsTo,
   HasMany,
   BelongsToMany,
+  AutoIncrement,
 } from 'sequelize-typescript';
 import User from './user';
 import Album from './album';
@@ -23,6 +24,7 @@ import SongArtist from './songArtist';
 @Table({ tableName: 'song', freezeTableName: true, underscored: true })
 export default class Song extends Model {
   @PrimaryKey
+  @AutoIncrement
   @Column
   id: number;
 

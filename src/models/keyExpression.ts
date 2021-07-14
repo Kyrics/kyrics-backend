@@ -1,4 +1,14 @@
-import { Model, Column, Table, DataType, ForeignKey, BelongsTo, BelongsToMany, PrimaryKey } from 'sequelize-typescript';
+import {
+  Model,
+  Column,
+  Table,
+  DataType,
+  ForeignKey,
+  BelongsTo,
+  BelongsToMany,
+  PrimaryKey,
+  AutoIncrement,
+} from 'sequelize-typescript';
 import Song from './song';
 import MyVocab from './myVocab';
 import User from './user';
@@ -6,6 +16,7 @@ import User from './user';
 @Table({ tableName: 'key_expression', freezeTableName: true, underscored: true, timestamps: false })
 export default class KeyExpression extends Model {
   @PrimaryKey
+  @AutoIncrement
   @Column
   id: number;
 
