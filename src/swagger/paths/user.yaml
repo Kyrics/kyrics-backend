@@ -17,19 +17,19 @@ get:
                   id:
                     description: user의 고유 id
                     type: number
-                  email:
-                    description: user의 이메일
-                    type: string
                   name:
                     description: user의 이름
+                    type: string
+                  email:
+                    description: user의 이메일
                     type: string
                   profileImageUrl:
                     description: user의 프로필 이미지 url
                     type: string
                 example:
                   id: 1
-                  email: kyrics@google.com
                   name: kyrics
+                  email: kyrics@google.com
                   profileImageUrl: https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png
               message:
                 type: string
