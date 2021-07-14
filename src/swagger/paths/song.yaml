@@ -61,9 +61,9 @@ get:
                   # Properties of the referenced object
                     id: 1
                     title: Life Goes On
-                    youtubeUrl: https://www.youtube.com/watch?v=-5q5mZbe3V8
                     artist: BTS
                     albumImageUrl: https://kyrics.s3.ap-northeast-2.amazonaws.com/album/1.png
+                    youtubeUrl: https://www.youtube.com/watch?v=-5q5mZbe3V8
                     isSaved: true
                     lyrics:
                     - startTime: '20.102'
