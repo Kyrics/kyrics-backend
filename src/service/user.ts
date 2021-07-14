@@ -29,29 +29,31 @@ const readUser = async(userId: number): Promise<IUserRes | Error> => {
 const deleteUser = async (userId: number): Promise<number | Error> => {
   const destroyMySongsRes = await User.destroy({
     where: {
-      userId
+      id: userId
     }
   });
   return destroyMySongsRes;
 };
 
-const updateUserEmail = async (userId: number, newEmail: string): Promise<[number, User[]] | Error> => {
-  const userUpdateRes = await User.update({
-    email: newEmail},
-  { where: {
-    id: userId
-  }});
-  return userUpdateRes;
+const updateUserEmail = async (userId: number, newEmail: string): Promise<User | Error> => {
+  const findUserRes = await User.findOne({where : {id: userId}});
+  if (!findUserRes) {
+    throw Error('유효하지 않은 아이디');
+  }
+  findUserRes.email = newEmail;
+  await findUserRes.save();
+  return findUserRes;
 };
 
 const readMySongs = async(userId: number): Promise<IMySongsRes[] | Error> => {
-  const readMySongsQuery = `SELECT my_songs.song_id, song.title, artist.\`name\`, album.album_image_url
+  const readMySongsQuery = `SELECT my_songs.song_id as id, song.title, artist.\`name\` as artist, album.album_image_url as albumImageUrl
                             FROM my_songs
                             LEFT OUTER JOIN song ON (my_songs.song_id = song.id)
                             LEFT OUTER JOIN album ON (song.album_id = album.id)
                             INNER JOIN song_artist ON (song.id = song_artist.song_id)
                             INNER JOIN artist ON (song_artist.artist_id = artist.id)
-                            WHERE my_songs.user_id = ${userId};`;
+                            WHERE my_songs.user_id = ${userId}
+                            ORDER BY my_songs.created_at DESC;`;
   const readMySongsRes = await sequelize.query(readMySongsQuery, { type: QueryTypes.SELECT }) as IMySongsRes[];
   return readMySongsRes;
 }
