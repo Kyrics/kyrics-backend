@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import statusCode from '../module/statusCode';
 import { readUser, deleteUser, updateUserEmail, readMySongs, createMySong, deleteMySong, createMyVocab, deleteMyVocab } from '../service/user';
+import User from '../models/user'
 
 const getUser = async (req: Request, res: Response) => {
   // 토큰으로 대체
@@ -33,7 +34,13 @@ const removeUser = async (req: Request, res: Response) => {
   const { userId } = req.body;
   console.log(userId);
   try {
-    await deleteUser(userId);
+    const deleteUserRes = await deleteUser(userId);
+    if (!deleteUserRes){
+      return res.json({
+        status: statusCode.BAD_REQUEST,
+        message: '유효하지 않은 아이디'
+      })
+    }
     return res.json({
       status: statusCode.OK,
       message: '요청 성공',
@@ -52,13 +59,24 @@ const modifyUserEmail = async (req: Request, res: Response) => {
   const { userId, email } = req.body;
   try {
     const updateUserEmailRes = await updateUserEmail(userId, email);
+    if (updateUserEmailRes instanceof Error) throw updateUserEmailRes   
     return res.json({
       status: statusCode.OK,
-      data: updateUserEmailRes,
+      data: {
+        name: updateUserEmailRes.name,
+        email: updateUserEmailRes.email,
+        updatedAt: updateUserEmailRes.updatedAt
+      },
       message: '수정 성공',
     });
   } catch (error) {
     console.error(error);
+    if (error.message === '유효하지 않은 아이디') {
+      return res.json({
+        status: statusCode.BAD_REQUEST,
+        message: '유효하지 않은 아이디'
+      })
+    }
     return res.json({
       status: statusCode.INTERNAL_SERVER_ERROR,
       message: '서버 내부 오류',
@@ -71,6 +89,12 @@ const getMySongs = async (req: Request, res: Response) => {
   const { userId } = req.body;
   try {
     const readMySongsRes = await readMySongs(userId);
+    if (!readMySongsRes){
+      return res.json({
+        status: statusCode.BAD_REQUEST,
+        message: '유효하지 않은 아이디'
+      })
+    }
     return res.json({
       status: statusCode.OK,
       data: readMySongsRes,
