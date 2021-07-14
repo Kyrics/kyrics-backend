@@ -5,9 +5,9 @@ import {
   UpdatedAt,
   Table,
   DataType,
-  Unique,
   BelongsToMany,
   PrimaryKey,
+  AutoIncrement,
 } from 'sequelize-typescript';
 import Song from './song';
 import MySongs from './mySongs';
@@ -17,6 +17,7 @@ import MyVocab from './myVocab';
 @Table({ tableName: 'user', freezeTableName: true, underscored: true })
 export default class User extends Model {
   @PrimaryKey
+  @AutoIncrement
   @Column
   id: number;
 

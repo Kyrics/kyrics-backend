@@ -1,4 +1,5 @@
-import { Column, ForeignKey, Table, Model, CreatedAt } from 'sequelize-typescript';
+import { Column, ForeignKey, Table, Model, CreatedAt, Default } from 'sequelize-typescript';
+import { Sequelize } from 'sequelize';
 import User from './user';
 import KeyExpression from './keyExpression';
 
@@ -13,6 +14,7 @@ export default class MyVocab extends Model {
   keyExpressionId: number;
 
   @CreatedAt
+  @Default(Sequelize.fn('NOW'))
   @Column
   createdAt?: Date;
 }

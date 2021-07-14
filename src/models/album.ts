@@ -1,4 +1,13 @@
-import { Model, Column, Table, PrimaryKey, DataType, HasMany, BelongsToMany } from 'sequelize-typescript';
+import {
+  Model,
+  Column,
+  Table,
+  PrimaryKey,
+  DataType,
+  HasMany,
+  BelongsToMany,
+  AutoIncrement,
+} from 'sequelize-typescript';
 import Artist from './artist';
 import Song from './song';
 import AlbumArtist from './albumArtist';
@@ -6,6 +15,7 @@ import AlbumArtist from './albumArtist';
 @Table({ tableName: 'album', freezeTableName: true, underscored: true, timestamps: false })
 export default class Album extends Model {
   @PrimaryKey
+  @AutoIncrement
   @Column
   id: number;
 

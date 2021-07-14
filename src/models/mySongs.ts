@@ -1,4 +1,5 @@
-import { Column, ForeignKey, Table, Model, CreatedAt } from 'sequelize-typescript';
+import { Column, ForeignKey, Table, Model, CreatedAt, Default } from 'sequelize-typescript';
+import { Sequelize } from 'sequelize';
 import User from './user';
 import Song from './song';
 
@@ -13,6 +14,7 @@ export default class MySongs extends Model {
   songId: number;
 
   @CreatedAt
+  @Default(Sequelize.fn('NOW'))
   @Column
   createdAt?: Date;
 }
