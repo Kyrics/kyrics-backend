@@ -20,6 +20,8 @@ paths:
     $ref: './paths/key-expression.yaml'
   /user:
     $ref: './paths/user.yaml'
+  /user/email:
+    $ref: './paths/user-email.yaml'
   /user/song:
     $ref: './paths/user-song.yaml'
   /user/song/:id:
