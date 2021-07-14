@@ -12,7 +12,7 @@ security:
     - read
     - write
 paths:
-  /signin:
+  /login:
     $ref: './paths/signin.yaml'
   /artists:
     $ref: './paths/artists.yaml'

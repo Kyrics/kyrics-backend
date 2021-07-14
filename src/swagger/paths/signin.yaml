@@ -1,19 +1,29 @@
 post:
   summary: 로그인하여 토큰을 받습니다.
-  parameters:
-    - in: body
-      name: user
-      description: 유저 정보를 보냅니다.
-      schema:
-        type: object
-        required:
+  consumes:
+    - application/json
+  requestBody:
+    x-name: body
+    required: true
+    content:
+      application/json: 
+        schema:
+          required:
           - name
           - socialId
-        properties:
-          name:
-            type: string
-          socialId:
-            type: string
+          - socialType
+          properties:
+            name:
+              type: string
+            socialId:
+              type: string
+            socialType:
+              description: \'Google\' 또는 \'Facebook\'
+              type: string
+            email:  
+              type: string
+            profileImageUrl:
+              type: string
   responses:
     200:
       description: 요청 성공
@@ -25,6 +35,11 @@ post:
               status:
                 type: number
                 example: 200
+              data:
+                type: object
+                properties:
+                  token:
+                    type: string
               message:
                 type: string
                 example: 요청 성공
