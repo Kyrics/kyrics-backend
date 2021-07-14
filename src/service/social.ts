@@ -29,6 +29,7 @@ const signupIfUserNotFoundAndLogin = async (input: socialLoginInput) => {
   }
   const signinInput = {
     socialId,
+    socialType,
   };
   const jwtSignRes = await jwtSign(signinInput);
   return jwtSignRes;

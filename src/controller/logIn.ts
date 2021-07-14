@@ -4,7 +4,9 @@ import { signupIfUserNotFoundAndLogin, socialLoginInput } from '../service/socia
 
 const socialLogin = async (req: Request, res: Response) => {
   const { name, socialId, email, profileImageUrl, socialType } = req.body;
+  console.log(req.body);
   if (!name || !socialId || !socialType) {
+    console.log(name, socialId, email);
     return res.json({
       status: 400,
       message: '필요한 값이 없습니다.',
@@ -22,7 +24,6 @@ const socialLogin = async (req: Request, res: Response) => {
     return res.json({
       status: statusCode.OK,
       data: {
-        socialType,
         token: jwtAfterLogin,
       },
       message: '소셜 로그인 성공',

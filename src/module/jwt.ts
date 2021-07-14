@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import { SocialType } from '../service/social';
 
 dotenv.config();
 
@@ -9,6 +10,7 @@ const TOKEN_INVALID = -2;
 
 interface jwtPayload {
   socialId: string;
+  socialType: SocialType;
 }
 
 const jwtSign = async (user: jwtPayload) => {
