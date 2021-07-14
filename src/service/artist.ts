@@ -4,32 +4,31 @@ import Artist from '../models/artist';
 
 interface IReadArtistRes {
   id: number;
-  name: string;
+  artist: string;
   backgroundImageUrl: string;
-  logo: string;
   songs: any;
 }
 
 const readArtist = async (artistId: number): Promise<IReadArtistRes | Error> => {
   const findArtistRes = await Artist.findByPk(artistId, {
-    attributes: ['id', 'name', 'background_image_url', 'logo_image_url'],
+    attributes: ['id', 'name', 'background_image_url'],
   });
   if (!findArtistRes) {
     throw Error('해당 id의 가수가 없습니다.');
   }
   const query = `
-  SELECT song.id, title, album_image_url asalbumImageUrl, artist.name as artist FROM song
+  SELECT song.id, title, album_image_url as albumImageUrl, artist.name as artist FROM song
   JOIN album ON(song.album_id=album.id)
   JOIN song_artist ON(song.id=song_artist.song_id)
   JOIN artist ON(artist.id=song_artist.artist_id)
   WHERE artist.id=${artistId}
+  LIMIT 5
   `;
   const findSongWithAlbumCover = await sequelize.query(query, { type: QueryTypes.SELECT });
   return {
     id: artistId,
-    name: findArtistRes.name,
+    artist: findArtistRes.name,
     backgroundImageUrl: findArtistRes.backgroundImageUrl,
-    logo: findArtistRes.logoImageUrl,
     songs: findSongWithAlbumCover,
   };
 };
