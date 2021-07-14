@@ -18,6 +18,14 @@ interface IMySongsRes{
 	albumImageUrl: string;
 }
 
+interface IMyVocabRes{
+  id: number;
+  kor: string;
+  eng: string;
+  korExample: string;
+  EngExample: string;
+}
+
 const readUser = async(userId: number): Promise<IUserRes | Error> => {
   const readUserRes = await User.findOne({
     where: {id: userId},
@@ -76,6 +84,16 @@ const deleteMySong = async (id: number, userId: number): Promise<number | Error>
   return destroyMySongsRes;
 };
 
+const readMyVocab = async(userId: number): Promise<IMyVocabRes[] | Error> => {
+  const readMyVocabQuery = `SELECT my_vocab.key_expression_id as id, key_expression.kor, key_expression.eng, key_expression.kor_example as korExample, key_expression.eng_example as engExample
+  FROM my_vocab
+  LEFT OUTER JOIN key_expression ON (my_vocab.key_expression_id = key_expression.id)
+  WHERE my_vocab.user_id = ${userId}
+  ORDER BY my_vocab.created_at DESC;`;
+  const readMyVocabRes = await sequelize.query(readMyVocabQuery, { type: QueryTypes.SELECT }) as IMyVocabRes[];
+  return readMyVocabRes;
+}
+
 const createMyVocab = async (id: number, userId: number): Promise<MyVocab | Error> => {
   const createMyVocabRes = await MyVocab.create({
     userId,
@@ -94,4 +112,4 @@ const createMyVocab = async (id: number, userId: number): Promise<MyVocab | Erro
     return destroyMyVocabRes;
   };
 
-export { readUser, deleteUser, updateUserEmail, readMySongs, createMySong, deleteMySong, createMyVocab, deleteMyVocab };
+export { readUser, deleteUser, updateUserEmail, readMySongs, createMySong, deleteMySong, readMyVocab, createMyVocab, deleteMyVocab };

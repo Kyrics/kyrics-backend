@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
 import statusCode from '../module/statusCode';
-import { readUser, deleteUser, updateUserEmail, readMySongs, createMySong, deleteMySong, createMyVocab, deleteMyVocab } from '../service/user';
-import User from '../models/user'
+import { readUser, deleteUser, updateUserEmail, readMySongs, createMySong, deleteMySong, readMyVocab, createMyVocab, deleteMyVocab } from '../service/user';
 
 const getUser = async (req: Request, res: Response) => {
   // 토큰으로 대체
@@ -84,12 +83,12 @@ const modifyUserEmail = async (req: Request, res: Response) => {
   }
 };
 
-const getMySongs = async (req: Request, res: Response) => {
+const getMyVocabs = async (req: Request, res: Response) => {
   // 토큰으로 대체
   const { userId } = req.body;
   try {
-    const readMySongsRes = await readMySongs(userId);
-    if (!readMySongsRes){
+    const readMyVocabRes = await readMyVocab(userId);
+    if (!readMyVocabRes){
       return res.json({
         status: statusCode.BAD_REQUEST,
         message: '유효하지 않은 아이디'
@@ -97,7 +96,7 @@ const getMySongs = async (req: Request, res: Response) => {
     }
     return res.json({
       status: statusCode.OK,
-      data: readMySongsRes,
+      data: readMyVocabRes,
       message: '요청 성공',
     });
   } catch (error) {
@@ -157,6 +156,31 @@ const removeMySong = async (req: Request, res: Response) => {
   }
 };
 
+const getMySongs = async (req: Request, res: Response) => {
+  // 토큰으로 대체
+  const { userId } = req.body;
+  try {
+    const readMySongsRes = await readMySongs(userId);
+    if (!readMySongsRes){
+      return res.json({
+        status: statusCode.BAD_REQUEST,
+        message: '유효하지 않은 아이디'
+      })
+    }
+    return res.json({
+      status: statusCode.OK,
+      data: readMySongsRes,
+      message: '요청 성공',
+    });
+  } catch (error) {
+    console.error(error);
+    return res.json({
+      status: statusCode.INTERNAL_SERVER_ERROR,
+      message: '서버 내부 오류',
+    });
+  }
+};
+
 const postMyVocab = async (req: Request, res: Response) => {
     const { id } = req.params;
     const { userId } = req.body;
@@ -205,4 +229,4 @@ const postMyVocab = async (req: Request, res: Response) => {
     }
   };
 
-export { getUser, removeUser, modifyUserEmail, getMySongs, postMySong, removeMySong, postMyVocab, removeMyVocab };
+export { getUser, removeUser, modifyUserEmail, getMySongs, postMySong, removeMySong, getMyVocabs, postMyVocab, removeMyVocab };
