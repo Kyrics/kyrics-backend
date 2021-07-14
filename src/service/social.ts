@@ -18,16 +18,24 @@ const signupIfUserNotFoundAndLogin = async (input: socialLoginInput) => {
       socialId,
     },
   });
+  let user: User;
   if (!userRes) {
-    await User.create({
+    user = await User.create({
       name,
       socialId,
       email,
       profileImageUrl,
       socialType,
     });
+  } else {
+    user = await User.findOne({ where: { socialId, socialType } });
+    user.name = name;
+    user.profileImageUrl = profileImageUrl || user.profileImageUrl;
+    await user.save();
   }
+
   const signinInput = {
+    id: user.id,
     socialId,
     socialType,
   };
