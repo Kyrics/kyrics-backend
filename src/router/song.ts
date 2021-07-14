@@ -1,7 +1,5 @@
 import express from 'express';
-import { getSong, getVocabsInSong} from '../controller/song';
-
-// 여기는 항상 응답이 토큰 디코드 미들웨어를 거쳐옵니다.
+import { getSong, getVocabsInSong } from '../controller/song';
 
 const router = express.Router();
 

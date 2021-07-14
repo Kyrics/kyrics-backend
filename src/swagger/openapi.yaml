@@ -16,11 +16,11 @@ paths:
     $ref: './paths/signin.yaml'
   /artists:
     $ref: './paths/artists.yaml'
-  /artist/:id:
+  /artist/{id}:
     $ref: './paths/artist.yaml'
-  /song/:id:
+  /song/{id}:
     $ref: './paths/song.yaml'
-  /song/:id/vocab:
+  /song/{id}/vocab:
     $ref: './paths/key-expression.yaml'
   /user:
     $ref: './paths/user.yaml'
@@ -28,11 +28,11 @@ paths:
     $ref: './paths/user-email.yaml'
   /user/song:
     $ref: './paths/user-song.yaml'
-  /user/song/:id:
+  /user/song/{id}:
     $ref: './paths/user-one-song.yaml'
   /user/vocab:
     $ref: './paths/user-vocab.yaml'
-  /user/vocab/:id:
+  /user/vocab/{id}:
     $ref: './paths/user-one-vocab.yaml'
 components:
   securitySchemes:

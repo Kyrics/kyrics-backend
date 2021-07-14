@@ -2,11 +2,6 @@ import { Request, Response, NextFunction } from 'express';
 import { jwtVerify } from '../module/jwt';
 import statusCode from '../module/statusCode';
 
-interface tokenResult {
-  socialId: string;
-  iat: number;
-}
-
 const TOKEN_EXPIRED = -3;
 const TOKEN_INVALID = -2;
 
@@ -28,7 +23,7 @@ const decodeToken = async (req: Request, res: Response, next: NextFunction): Pro
         message: '토큰이 유효하지 않습니다.',
       });
     }
-    (<any>req).decoded = user;
+    req.decoded = user;
     next();
   }
 };

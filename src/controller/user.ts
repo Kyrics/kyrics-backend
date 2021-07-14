@@ -1,18 +1,26 @@
 import { Request, Response } from 'express';
 import statusCode from '../module/statusCode';
-import { readUser, deleteUser, updateUserEmail, readMySongs, createMySong, deleteMySong, readMyVocab, createMyVocab, deleteMyVocab } from '../service/user';
+import {
+  readUser,
+  deleteUser,
+  updateUserEmail,
+  readMySongs,
+  createMySong,
+  deleteMySong,
+  readMyVocab,
+  createMyVocab,
+  deleteMyVocab,
+} from '../service/user';
 
 const getUser = async (req: Request, res: Response) => {
-  // 토큰으로 대체
-  const { userId } = req.body;
-  console.log(userId);
+  const { id } = req.decoded;
   try {
-    const readUserRes = await readUser(userId);
-    if (!readUserRes){
+    const readUserRes = await readUser(+id);
+    if (!readUserRes) {
       return res.json({
         status: statusCode.BAD_REQUEST,
-        message: '유효하지 않은 아이디'
-      })
+        message: '유효하지 않은 아이디',
+      });
     }
     return res.json({
       status: statusCode.OK,
@@ -29,16 +37,14 @@ const getUser = async (req: Request, res: Response) => {
 };
 
 const removeUser = async (req: Request, res: Response) => {
-  // 토큰으로 대체
-  const { userId } = req.body;
-  console.log(userId);
+  const { id } = req.decoded;
   try {
-    const deleteUserRes = await deleteUser(userId);
-    if (!deleteUserRes){
+    const deleteUserRes = await deleteUser(id);
+    if (!deleteUserRes) {
       return res.json({
         status: statusCode.BAD_REQUEST,
-        message: '유효하지 않은 아이디'
-      })
+        message: '유효하지 않은 아이디',
+      });
     }
     return res.json({
       status: statusCode.OK,
@@ -54,17 +60,17 @@ const removeUser = async (req: Request, res: Response) => {
 };
 
 const modifyUserEmail = async (req: Request, res: Response) => {
-  // 토큰으로 대체
-  const { userId, email } = req.body;
+  const { id: userId } = req.decoded;
+  const { email } = req.body;
   try {
     const updateUserEmailRes = await updateUserEmail(userId, email);
-    if (updateUserEmailRes instanceof Error) throw updateUserEmailRes   
+    if (updateUserEmailRes instanceof Error) throw updateUserEmailRes;
     return res.json({
       status: statusCode.OK,
       data: {
         name: updateUserEmailRes.name,
         email: updateUserEmailRes.email,
-        updatedAt: updateUserEmailRes.updatedAt
+        updatedAt: updateUserEmailRes.updatedAt,
       },
       message: '수정 성공',
     });
@@ -73,8 +79,8 @@ const modifyUserEmail = async (req: Request, res: Response) => {
     if (error.message === '유효하지 않은 아이디') {
       return res.json({
         status: statusCode.BAD_REQUEST,
-        message: '유효하지 않은 아이디'
-      })
+        message: '유효하지 않은 아이디',
+      });
     }
     return res.json({
       status: statusCode.INTERNAL_SERVER_ERROR,
@@ -84,15 +90,14 @@ const modifyUserEmail = async (req: Request, res: Response) => {
 };
 
 const getMyVocabs = async (req: Request, res: Response) => {
-  // 토큰으로 대체
-  const { userId } = req.body;
+  const { id: userId } = req.decoded;
   try {
     const readMyVocabRes = await readMyVocab(userId);
-    if (!readMyVocabRes){
+    if (!readMyVocabRes) {
       return res.json({
         status: statusCode.BAD_REQUEST,
-        message: '유효하지 않은 아이디'
-      })
+        message: '유효하지 않은 아이디',
+      });
     }
     return res.json({
       status: statusCode.OK,
@@ -110,7 +115,7 @@ const getMyVocabs = async (req: Request, res: Response) => {
 
 const postMySong = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { userId } = req.body;
+  const { id: userId } = req.decoded;
   if (!id || !userId) {
     return res.json({
       status: statusCode.BAD_REQUEST,
@@ -134,7 +139,7 @@ const postMySong = async (req: Request, res: Response) => {
 
 const removeMySong = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { userId } = req.body;
+  const { id: userId } = req.decoded;
   if (!id || !userId) {
     return res.json({
       status: statusCode.BAD_REQUEST,
@@ -157,15 +162,14 @@ const removeMySong = async (req: Request, res: Response) => {
 };
 
 const getMySongs = async (req: Request, res: Response) => {
-  // 토큰으로 대체
-  const { userId } = req.body;
+  const { id: userId } = req.decoded;
   try {
     const readMySongsRes = await readMySongs(userId);
-    if (!readMySongsRes){
+    if (!readMySongsRes) {
       return res.json({
         status: statusCode.BAD_REQUEST,
-        message: '유효하지 않은 아이디'
-      })
+        message: '유효하지 않은 아이디',
+      });
     }
     return res.json({
       status: statusCode.OK,
@@ -182,51 +186,61 @@ const getMySongs = async (req: Request, res: Response) => {
 };
 
 const postMyVocab = async (req: Request, res: Response) => {
-    const { id } = req.params;
-    const { userId } = req.body;
-    if (!id || !userId) {
-      return res.json({
-        status: statusCode.BAD_REQUEST,
-        message: '필요한 값이 없습니다.',
-      });
-    }
-    try {
-      await createMyVocab(+id, userId);
-      return res.json({
-        status: statusCode.OK,
-        message: '요청 성공',
-      });
-    } catch (error) {
-      console.error(error);
-      return res.json({
-        status: statusCode.INTERNAL_SERVER_ERROR,
-        message: '서버 내부 오류',
-      });
-    }
-  };
-  
-  const removeMyVocab = async (req: Request, res: Response) => {
-    const { id } = req.params;
-    const { userId } = req.body;
-    if (!id || !userId) {
-      return res.json({
-        status: statusCode.BAD_REQUEST,
-        message: '필요한 값이 없습니다.',
-      });
-    }
-    try {
-      await deleteMyVocab(+id, userId);
-      return res.json({
-        status: statusCode.OK,
-        message: '삭제 성공',
-      });
-    } catch (error) {
-      console.error(error);
-      return res.json({
-        status: statusCode.INTERNAL_SERVER_ERROR,
-        message: '서버 내부 에러',
-      });
-    }
-  };
+  const { id } = req.params;
+  const { id: userId } = req.decoded;
+  if (!id || !userId) {
+    return res.json({
+      status: statusCode.BAD_REQUEST,
+      message: '필요한 값이 없습니다.',
+    });
+  }
+  try {
+    await createMyVocab(+id, userId);
+    return res.json({
+      status: statusCode.OK,
+      message: '요청 성공',
+    });
+  } catch (error) {
+    console.error(error);
+    return res.json({
+      status: statusCode.INTERNAL_SERVER_ERROR,
+      message: '서버 내부 오류',
+    });
+  }
+};
 
-export { getUser, removeUser, modifyUserEmail, getMySongs, postMySong, removeMySong, getMyVocabs, postMyVocab, removeMyVocab };
+const removeMyVocab = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const { id: userId } = req.decoded;
+  if (!id || !userId) {
+    return res.json({
+      status: statusCode.BAD_REQUEST,
+      message: '필요한 값이 없습니다.',
+    });
+  }
+  try {
+    await deleteMyVocab(+id, userId);
+    return res.json({
+      status: statusCode.OK,
+      message: '삭제 성공',
+    });
+  } catch (error) {
+    console.error(error);
+    return res.json({
+      status: statusCode.INTERNAL_SERVER_ERROR,
+      message: '서버 내부 에러',
+    });
+  }
+};
+
+export {
+  getUser,
+  removeUser,
+  modifyUserEmail,
+  getMySongs,
+  postMySong,
+  removeMySong,
+  getMyVocabs,
+  postMyVocab,
+  removeMyVocab,
+};
