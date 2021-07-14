@@ -1,5 +1,5 @@
 get:
-  summary: 로그인한 유저의 My Songs를 조회합니다. (확정 아님)
+  summary: 로그인한 유저의 My Songs를 조회합니다.
   responses:
     200:
       content:
@@ -16,26 +16,21 @@ get:
                 type: string
               artist:
                 description: 해당 song의 artist
-                type: array
-                items: string
+                type: string
               albumImageUrl:
                 description: 앨범 이미지 url
                 type: string
               albumTitle:
                 description: 앨범의 title
             example:
-              - id: 1
-                title: Life goes on
-                artist:
-                  - BTS
-                albumImageUrl: https://upload.wikimedia.org/wikipedia/en/a/a2/BTS_-_Be_Cover.png
-                albumTitle: BE
               - id: 2
-                title: 뚜두뚜두 (DDU-DU DDU-DU)
-                atrist:
-                  - BLACKPINK
-                albumImageUrl: https://cdnimg.melon.co.kr/cm/album/images/101/76/415/10176415_500.jpg?7bebc774b094d72c1c22165612ef0948
-                albumTitle: SQUARE UP
+                title: DNA
+                artist: BTS
+                albumImageUrl: https://kyrics.s3.ap-northeast-2.amazonaws.com/album/2.png
+              - id: 10
+                title: 마지막처럼 (AS IF IT'S YOUR LAST)
+                atrist: BLACKPINK
+                albumImageUrl: https://kyrics.s3.ap-northeast-2.amazonaws.com/album/9.png
     400:
       $ref: '../openapi.yaml#/components/responses/BadRequest'
     500:

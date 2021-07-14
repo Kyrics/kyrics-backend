@@ -1,0 +1,36 @@
+patch:
+  summary: 유저가 이메일을 수정한 후 유저 정보를 가져옵니다.
+  responses:
+    200:
+      description: 요청 성공
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: number
+                example: 200
+              data:
+                type: object
+                properties:
+                  name:
+                    description: user의 이름
+                    type: string
+                  email:
+                    description: user의 이메일
+                    type: string
+                  updatedAt:
+                    description: update된 시각
+                    type: date
+                example:
+                  name: kyrics
+                  email: kyrics@google.com
+                  updatedAt: 2021-07-14T07:27:49.000Z
+              message:
+                type: string
+                example: 수정 성공
+    400:
+      $ref: '../openapi.yaml#/components/responses/BadRequest'
+    500:
+      $ref: '../openapi.yaml#/components/responses/InternalServerError'
