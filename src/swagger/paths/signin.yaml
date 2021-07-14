@@ -1,0 +1,35 @@
+post:
+  summary: 로그인하여 토큰을 받습니다.
+  parameters:
+    - in: body
+      name: user
+      description: 유저 정보를 보냅니다.
+      schema:
+        type: object
+        required:
+          - name
+          - socialId
+        properties:
+          name:
+            type: string
+          socialId:
+            type: string
+  responses:
+    200:
+      description: 요청 성공
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: number
+                example: 200
+              message:
+                type: string
+                example: 요청 성공
+    400:
+      $ref: '../openapi.yaml#/components/responses/BadRequest'
+    500:
+      $ref: '../openapi.yaml#/components/responses/InternalServerError'
+

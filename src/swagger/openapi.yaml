@@ -4,12 +4,16 @@ info:
   title: Kyrics Server API docs
   description: Kyrics Server의 API 문서입니다
 servers:
-  - url: http://localhost:5000/
+  - url:  http://kyrics-test-env.eba-kez2mzcm.ap-northeast-2.elasticbeanstalk.com
+  - url: http://localhost:8081/
+
 security:
   - Authorization:
     - read
     - write
 paths:
+  /signin:
+    $ref: './paths/signin.yaml'
   /artists:
     $ref: './paths/artists.yaml'
   /artist/:id:
