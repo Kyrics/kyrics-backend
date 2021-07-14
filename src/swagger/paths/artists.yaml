@@ -35,6 +35,9 @@ get:
                     name: Black Pink
                     profileImage: https://img.koreatimes.co.kr/upload/newsV2/images/202006/e6957dd9e7254ed8b0f9d17be863eaad.jpg/dims/resize/740/optimize
                     logo: https://www.findatamall.or.kr/fsec/dataProd/generalDataProdDetail.do?cmnx=44&goods_id=26e8525c-aefd-11eb-9f58-f220ef21bb88
+              message:
+                type: string
+                example: 요청 성공
     400:
       $ref: '../openapi.yaml#/components/responses/BadRequest'
     500:

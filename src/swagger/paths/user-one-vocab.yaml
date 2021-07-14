@@ -38,7 +38,7 @@ delete:
     description: 삭제하고자 하는 단어의 id
   responses:
     200:
-      description: 요청 성공
+      description: 삭제 성공
       content:
         application/json:
           schema:
@@ -49,7 +49,7 @@ delete:
                 example: 200
               message:
                 type: string
-                example: 요청 성공
+                example: 삭제 성공
     400:
       $ref: '../openapi.yaml#/components/responses/BadRequest'
     500:

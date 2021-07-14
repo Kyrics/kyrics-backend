@@ -46,8 +46,6 @@ components:
       properties:
         status:
           type: number
-        data:
-          type: object
         message:
           type: string
   responses:
@@ -59,7 +57,6 @@ components:
             $ref: '#components/schemas/Response'
           example:
             status: 400
-            data: {}
             message: 잘못된 요청
     InternalServerError:
       description: 서버 오류
@@ -69,5 +66,4 @@ components:
             $ref: '#components/schemas/Response'
           example:
             status: 500
-            data: {}
             message: 서버 오류

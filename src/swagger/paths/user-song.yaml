@@ -2,35 +2,46 @@ get:
   summary: 로그인한 유저의 My Songs를 조회합니다.
   responses:
     200:
+      description: 요청 성공
       content:
         application/json:
           schema:
-            type: array
-            items: object
+            type: object
             properties:
-              id:
-                description: 해당 song의 id
+              status:
                 type: number
-              title:
-                description: 해당 song의 title
+                example: 200
+              data:
+                type: array
+                items: 
+                  type: obejct
+                  properties:
+                    id:
+                      description: 해당 song의 id
+                      type: number
+                    title:
+                      description: 해당 song의 title
+                      type: string
+                    artist:
+                      description: 해당 song의 artist
+                      type: string
+                    albumImageUrl:
+                      description: 앨범 이미지 url
+                      type: string
+                    albumTitle:
+                      description: 앨범의 title
+                example:
+                  - id: 2
+                    title: DNA
+                    artist: BTS
+                    albumImageUrl: https://kyrics.s3.ap-northeast-2.amazonaws.com/album/2.png
+                  - id: 10
+                    title: 마지막처럼 (AS IF IT'S YOUR LAST)
+                    artist: BLACKPINK
+                    albumImageUrl: https://kyrics.s3.ap-northeast-2.amazonaws.com/album/9.png
+              message:
                 type: string
-              artist:
-                description: 해당 song의 artist
-                type: string
-              albumImageUrl:
-                description: 앨범 이미지 url
-                type: string
-              albumTitle:
-                description: 앨범의 title
-            example:
-              - id: 2
-                title: DNA
-                artist: BTS
-                albumImageUrl: https://kyrics.s3.ap-northeast-2.amazonaws.com/album/2.png
-              - id: 10
-                title: 마지막처럼 (AS IF IT'S YOUR LAST)
-                atrist: BLACKPINK
-                albumImageUrl: https://kyrics.s3.ap-northeast-2.amazonaws.com/album/9.png
+                example: 요청 성공
     400:
       $ref: '../openapi.yaml#/components/responses/BadRequest'
     500:
