@@ -8,12 +8,13 @@ const { JWT_SECRET, JWT_EXPIRES_IN } = process.env;
 const TOKEN_EXPIRED = -3;
 const TOKEN_INVALID = -2;
 
-interface jwtPayload {
+interface jwtInputPayload {
+  id: number;
   socialId: string;
   socialType: SocialType;
 }
 
-const jwtSign = async (user: jwtPayload) => {
+const jwtSign = async (user: jwtInputPayload) => {
   const signOption: jwt.SignOptions = {
     algorithm: 'HS256',
     expiresIn: JWT_EXPIRES_IN,
@@ -25,7 +26,7 @@ const jwtSign = async (user: jwtPayload) => {
 };
 
 const jwtVerify = async (token: string): Promise<jwt.JwtPayload | string | number> => {
-  let decoded;
+  let decoded: string | jwt.JwtPayload;
   try {
     decoded = jwt.verify(token, JWT_SECRET);
   } catch (error) {
@@ -37,4 +38,4 @@ const jwtVerify = async (token: string): Promise<jwt.JwtPayload | string | numbe
   return decoded;
 };
 
-export { jwtPayload, jwtSign, jwtVerify };
+export { jwtInputPayload, jwtSign, jwtVerify };
