@@ -14,7 +14,7 @@
     
 * Term : 2021.06.26 ~ 2021.07.17
 
-* [API Spec](http://13.125.187.196:8081/api-docs/)
+* [API Spec](https://kyricserver.com/api-docs/)
 
 * [Coding Convention](https://github.com/Kyrics/kyrics-backend/blob/develop/CODINGCONVENTION.md)
 
