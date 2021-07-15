@@ -4,6 +4,7 @@ info:
   title: Kyrics Server API docs
   description: Kyrics Server의 API 문서입니다
 servers:
+  - url: https://kyricserver.com
   - url:  http://kyrics-test-env.eba-kez2mzcm.ap-northeast-2.elasticbeanstalk.com
   - url: http://localhost:8081/
 
