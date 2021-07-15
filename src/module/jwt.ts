@@ -1,10 +1,7 @@
 import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
 import { SocialType } from '../service/social';
+import { JWT_SECRET, JWT_EXPIRES_IN } from '../common/env';
 
-dotenv.config();
-
-const { JWT_SECRET, JWT_EXPIRES_IN } = process.env;
 const TOKEN_EXPIRED = -3;
 const TOKEN_INVALID = -2;
 

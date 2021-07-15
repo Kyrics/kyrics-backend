@@ -1,22 +1,23 @@
 import * as dotenv from 'dotenv';
+import { DB_USERNAME, DB_PASSWORD, DB_DBNAME, DB_HOST, DB_PORT } from '../common/env';
 
 dotenv.config();
 
 export default {
   development: {
-    username: process.env.DB_USER_NAME || 'admin',
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_DBNAME || 'kyrics-development',
-    host: process.env.DB_HOST || 'localhost',
-    port: process.env.DB_PORT || 3306,
+    username: DB_USERNAME || 'admin',
+    password: DB_PASSWORD,
+    database: DB_DBNAME || 'kyrics-development',
+    host: DB_HOST || 'localhost',
+    port: DB_PORT || 3306,
     dialect: 'mysql',
   },
   production: {
-    username: process.env.DB_USERNAME || 'admin',
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_DBNAME || 'kyrics-production',
-    host: process.env.DB_HOST || 'localhost',
-    port: process.env.DB_PORT || 3306,
+    username: DB_USERNAME || 'admin',
+    password: DB_PASSWORD,
+    database: DB_DBNAME || 'kyrics-production',
+    host: DB_HOST || 'localhost',
+    port: DB_PORT || 3306,
     dialect: 'mysql',
   },
 };

@@ -6,6 +6,7 @@ import swaggerUI from 'swagger-ui-express';
 import cors from 'cors';
 import sequelize from './models';
 import router from './router';
+import { PORT } from './common/env';
 
 dotenv.config();
 
@@ -49,10 +50,10 @@ app.use((err: ExpressError, req: Request, res: Response, next: NextFunction) => 
 });
 
 app
-  .listen(process.env.PORT || 8080, () => {
+  .listen(PORT || 8080, () => {
     console.log(`
     ################################################
-    🛡️  Server listening on port: ${process.env.PORT || 8080} 🛡️
+    🛡️  Server listening on port: ${PORT || 8080} 🛡️
     ################################################
   `);
     sequelize
