@@ -31,7 +31,7 @@ jobs:
           echo DB_USERNAME=${{ secrets.DB_USERNAME }} >> .env
           echo DB_PASSWORD=${{ secrets.DB_PASSWORD }} >> .env
           echo DB_PORT= ${{ secrets.DB_PORT }} >> .env
-          echo AWS_BUCKET_NAME=${{ secrets.TEST_AWS_BUCKET_NAME }} >> .env
+          echo JWT_EXPIRES_IN=${{ secrets.JWT_EXPIRES_IN }} >> .env
           cat .env
       # Initialize Node.js
       - name: Install Node.js ${{ matrix.node-version }}
