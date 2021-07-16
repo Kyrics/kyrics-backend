@@ -86,7 +86,7 @@ const readSong = async (songId: number, userId: number): Promise<IReadSongRes | 
 
 const readVocabsWithoutLogin = async (songId: number): Promise<KeyExpression[] | Error> => {
   const findVocabsRes = await KeyExpression.findAll({
-    attributes: ['kor', 'eng', ['kor_example', 'korExample'], ['eng_example', 'engExample']],
+    attributes: ['id', 'kor', 'eng', ['kor_example', 'korExample'], ['eng_example', 'engExample']],
     where: { songId },
   });
   return findVocabsRes;
