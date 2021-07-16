@@ -19,17 +19,45 @@
 * [Coding Convention](https://github.com/Kyrics/kyrics-backend/blob/develop/CODINGCONVENTION.md)
 
 * [Contribution Guide](https://github.com/Kyrics/kyrics-backend/blob/develop/CONTRIBUTIONGUIDE.md)</b>
+<br>
+
+### 🌍 WorkFlow
+
+* 업데이트 예정
+
+<br>
+
+### ✔️ Main Feature
+
+|기능|설명|담당|완료|
+|:---:|:---:|:---:|:---:|
+|**Home**|메인 홈 페이지|가영|☑️|
+|**Social Login**|구글과 페이스북 소셜 로그인|가영|☑️|
+|**Artist**|아티스트별 노래 조회|가영|☑️|
+|**Study**|노래별 가수, 앨범, 가사, 단어 조회|청하|☑️|
+|**Mypage**|사용자 정보 조회, 이메일 수정|청하|☑️|
+|**MySong**|노래 즐겨찾기|청하|☑️|
+|**MyVocab**|단어 즐겨찾기|서현|☑️|
+
+<br>
+
+### ✏️ DB ERD
+
+![architecture](https://kyrics.s3.ap-northeast-2.amazonaws.com/kyrics_erd.JPG)  
 
 <br>
 
 ### :blue_book: Package
 
 ```json
-"dependencies": {
+  "dependencies": {
+    "@types/jsonwebtoken": "^8.5.4",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.2.5",
+    "pm2": "^5.1.0",
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.6.4",
     "sequelize-cli": "^6.2.0",
@@ -72,6 +100,7 @@
 * AWS EC2 - 클라우드 컴퓨팅 시스템
 * AWS elastic beanstlak - 서버 배포및 관리 프로비저닝 서비스
 * AWS S3 - 클라우드 데이터 저장소
+* AWS Route 53 - 클라우드 DNS 웹 서비스
 
 <br>
 
@@ -84,7 +113,6 @@
 * [MySQL](https://www.mysql.com/) - RDBMS
 
 <br>
-
 
 ### 👩‍👩‍👧 Contributor
 
