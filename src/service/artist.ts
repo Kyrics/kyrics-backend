@@ -11,7 +11,7 @@ interface IReadArtistRes {
 
 const readArtist = async (artistId: number): Promise<IReadArtistRes | Error> => {
   const findArtistRes = await Artist.findByPk(artistId, {
-    attributes: ['id', 'name', ['background_image_url', 'backgroundImageUrl'], ['logo_image_url', 'logoImageUrl']],
+    attributes: ['id', 'name', ['background_image_url', 'backgroundImageUrl']],
   });
   if (!findArtistRes) {
     throw Error('해당 id의 가수가 없습니다.');
