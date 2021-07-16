@@ -23,7 +23,7 @@
 
 ### 🌍 WorkFlow
 
-* 업데이트 예정
+![workflow](https://kyrics.s3.ap-northeast-2.amazonaws.com/KakaoTalk_20210716_213706524.jpg)
 
 <br>
 
@@ -43,7 +43,7 @@
 
 ### ✏️ DB ERD
 
-![architecture](https://kyrics.s3.ap-northeast-2.amazonaws.com/kyrics_erd.JPG)  
+![dberd](https://kyrics.s3.ap-northeast-2.amazonaws.com/kyrics_erd.JPG)  
 
 <br>
 
