@@ -40,6 +40,8 @@ post:
                 properties:
                   token:
                     type: string
+                  isNewUser:
+                    type: boolean
               message:
                 type: string
                 example: 요청 성공

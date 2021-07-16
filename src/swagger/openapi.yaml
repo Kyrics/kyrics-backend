@@ -14,7 +14,7 @@ security:
     - write
 paths:
   /login:
-    $ref: './paths/signin.yaml'
+    $ref: './paths/login.yaml'
   /artists:
     $ref: './paths/artists.yaml'
   /artist/{id}:
