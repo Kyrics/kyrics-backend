@@ -23,7 +23,7 @@
 
 ### 🌍 WorkFlow
 
-![workflow](https://kyrics.s3.ap-northeast-2.amazonaws.com/KakaoTalk_20210716_213706524.jpg)
+![workflow](https://kyrics.s3.ap-northeast-2.amazonaws.com/workflow.JPG)
 
 <br>
 
