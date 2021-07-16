@@ -11,7 +11,7 @@ const router = express.Router();
 router.use('/login', socialLogin);
 
 router.use('/user', checkLogIn, decodeToken, userRouter);
-router.use('/song', checkLogIn, decodeToken, songRouter);
+router.use('/song', decodeToken, songRouter);
 router.use('/artist/:id', getArtist);
 router.use('/artists', artistsRouter);
 
