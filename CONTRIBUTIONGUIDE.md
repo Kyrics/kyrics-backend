@@ -36,8 +36,8 @@ default brench는 `main` 이고,
 
 No `commit -m` ❗ : 커밋 기록을 자세히 남겨주세요. 깃 크라켄을 사용한다면 다음과 같이 `Description` 에 간단히 써주면 좋아요.
 
-<img style="border: 1px solid black !important; border-radius:20px;" src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/f6dbaeb7-7be9-456c-8d6b-fb0614a43f1d/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20210707%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20210707T133439Z&X-Amz-Expires=86400&X-Amz-Signature=de658e6835c587e5c8b04113928d8c14c4f2ed55a74911567ee626f8237f8476&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22" width="50%"/>
+<img style="border: 1px solid black !important; border-radius:20px;" src="https://kyrics.s3.ap-northeast-2.amazonaws.com/commit.png" width="50%"/>
 ❌
 
-<img style="border: 1px solid black !important; border-radius:20px;" src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/a91e21ec-c813-4836-9301-0a61412d004e/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20210707%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20210707T133610Z&X-Amz-Expires=86400&X-Amz-Signature=097110852ba04a891d750c57869f84120ba287ded3799f61de1e48062b8bad87&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22" width="50%"/>
+<img style="border: 1px solid black !important; border-radius:20px;" src="https://kyrics.s3.ap-northeast-2.amazonaws.com/commit1.png" width="50%"/>
 ⭕
