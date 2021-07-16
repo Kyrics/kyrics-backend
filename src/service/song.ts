@@ -4,8 +4,8 @@ import Song from '../models/song';
 import MySongs from '../models/mySongs';
 
 interface ILyrics {
-  startTime: string;
-  duration: string;
+  startTime: number;
+  duration: number;
   kor: string;
   eng: string;
 }
@@ -32,48 +32,6 @@ interface IReadVocabsRes {
   keyExpressionId: number | null;
 }
 
-const readSongWithoutLogin = async (songId: number): Promise<IReadSongRes | Error> => {
-  const { id, title, youtubeUrl, korLyrics, engLyrics, lyricsStartTime, lyricsDuration } = await Song.findByPk(songId);
-  const artistQuery = `SELECT \`name\` as artist
-    FROM song_artist JOIN artist
-    ON (song_artist.artist_id=artist.id
-    AND song_artist.song_id=${songId});`;
-  const albumQuery = `SELECT album_image_url as albumImageUrl
-    FROM album, song
-    WHERE song.id=${songId}
-    AND album.id = song.album_id;`;
-  const readArtist = (await sequelize.query(artistQuery, { type: QueryTypes.SELECT })) as IReadSongWithArtistQueryRes[];
-  const readAlbumImgUrl = (await sequelize.query(albumQuery, {
-    type: QueryTypes.SELECT,
-  })) as IReadSongWithArtistQueryRes[];
-
-  // lyrics 배열 만들기
-  const korLyricsList = korLyrics.split('/$');
-  const engLyricsList = engLyrics.split('/$');
-  const lyricsStartTimeList = lyricsStartTime.split('/$');
-  const lyricsDurationList = lyricsDuration.split('/$');
-
-  const lyricsObjAll = [];
-
-  for (let i = 0; i < korLyricsList.length; i += 1) {
-    lyricsObjAll.push({
-      startTime: lyricsStartTimeList[i],
-      duration: lyricsDurationList[i],
-      kor: korLyricsList[i],
-      eng: engLyricsList[i],
-    });
-  }
-  return {
-    id,
-    title,
-    artist: readArtist[0].artist,
-    albumImageUrl: readAlbumImgUrl[0].albumImageUrl,
-    youtubeUrl,
-    isSaved : false,
-    lyrics: lyricsObjAll,
-  };
-};
-
 const readSong = async (songId: number, userId: number): Promise<IReadSongRes | Error> => {
   const { id, title, youtubeUrl, korLyrics, engLyrics, lyricsStartTime, lyricsDuration } = await Song.findByPk(songId);
   const artistQuery = `SELECT \`name\` as artist
@@ -99,20 +57,20 @@ const readSong = async (songId: number, userId: number): Promise<IReadSongRes | 
 
   for (let i = 0; i < korLyricsList.length; i += 1) {
     lyricsObjAll.push({
-      startTime: lyricsStartTimeList[i],
-      duration: lyricsDurationList[i],
+      startTime: +lyricsStartTimeList[i],
+      duration: +lyricsDurationList[i],
       kor: korLyricsList[i],
       eng: engLyricsList[i],
     });
   }
 
-  
-  let isSaved;
-  const readIsSaved = await MySongs.findOne({ where: { user_id: userId, song_id: songId } });
-  if (readIsSaved === null) {
-    isSaved = false;
-  } else {
-    isSaved = true;
+  let isSaved = false;
+
+  if (userId) {
+    const readIsSaved = await MySongs.findOne({ where: { user_id: userId, song_id: songId } });
+    if (readIsSaved) {
+      isSaved = true;
+    }
   }
 
   return {
@@ -151,4 +109,4 @@ const readVocabs = async (songId: number, userId: number): Promise<IReadVocabsRe
   return vocabs;
 };
 
-export { readSong, readSongWithoutLogin, readVocabsWithoutLogin, readVocabs };
+export { readSong, readVocabsWithoutLogin, readVocabs };
