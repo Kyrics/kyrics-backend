@@ -20,6 +20,7 @@ const sequelize = new Sequelize({
   dialect: 'mysql',
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
+  logging: false,
 });
 
 sequelize.addModels([
