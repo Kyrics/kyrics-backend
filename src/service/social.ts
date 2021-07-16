@@ -16,9 +16,11 @@ const signupIfUserNotFoundAndLogin = async (input: socialLoginInput) => {
   const userRes = await User.findOne({
     where: {
       socialId,
+      socialType,
     },
   });
   let user: User;
+  let isNewUser = false;
   if (!userRes) {
     user = await User.create({
       name,
@@ -27,6 +29,7 @@ const signupIfUserNotFoundAndLogin = async (input: socialLoginInput) => {
       profileImageUrl,
       socialType,
     });
+    isNewUser = true;
   } else {
     user = await User.findOne({ where: { socialId, socialType } });
     user.name = name;
@@ -40,7 +43,7 @@ const signupIfUserNotFoundAndLogin = async (input: socialLoginInput) => {
     socialType,
   };
   const jwtSignRes = await jwtSign(signinInput);
-  return jwtSignRes;
+  return { jwtSignRes, isNewUser };
 };
 
 export { SocialType, socialLoginInput, signupIfUserNotFoundAndLogin };

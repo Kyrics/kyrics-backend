@@ -20,11 +20,12 @@ const socialLogin = async (req: Request, res: Response) => {
     socialType,
   };
   try {
-    const jwtAfterLogin = await signupIfUserNotFoundAndLogin(input);
+    const { jwtSignRes: token, isNewUser } = await signupIfUserNotFoundAndLogin(input);
     return res.json({
       status: statusCode.OK,
       data: {
-        token: jwtAfterLogin,
+        token,
+        isNewUser,
       },
       message: '소셜 로그인 성공',
     });
