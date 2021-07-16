@@ -36,8 +36,13 @@ default brench는 `main` 이고,
 
 No `commit -m` ❗ : 커밋 기록을 자세히 남겨주세요. 깃 크라켄을 사용한다면 다음과 같이 `Description` 에 간단히 써주면 좋아요.
 
-<img style="border: 1px solid black !important; border-radius:20px;" src="https://kyrics.s3.ap-northeast-2.amazonaws.com/commit.png" width="50%"/>
-❌
-
+❌<br>
+<img style="border: 1px solid black !important; border-radius:20px;" src="https://kyrics.s3.ap-northeast-2.amazonaws.com/commit.png" width="50%"/><br>
+⭕<br>
 <img style="border: 1px solid black !important; border-radius:20px;" src="https://kyrics.s3.ap-northeast-2.amazonaws.com/commit1.png" width="50%"/>
-⭕
+
+## Rebase 그리고 Squash and Merge
+
+- 풀리퀘 보내기 전에 먼저 local 의 develop과 작업 중이던 branch를 remote `develop` 브랜치 위로 rebase 해주세요. (갈라진 곳 이 있다면 그 곳으로 reset —mixed를 하고 rebase 후 다시 커밋 합니다.)
+- 그리고 나서 다시 해당 브랜치의 remote로 push해주시고 풀리퀘 남겨주시면 됩니당.
+<br>
