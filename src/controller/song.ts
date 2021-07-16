@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import statusCode from '../module/statusCode';
-import { readSong, readVocabs } from '../service/song';
+import { readSong, readVocabs, readVocabsWithoutLogin } from '../service/song';
 
 const getSong = async (req: Request, res: Response) => {
   const { id } = req.params;
@@ -22,10 +22,15 @@ const getSong = async (req: Request, res: Response) => {
 
 const getVocabsInSong = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { id: userId } = req.decoded;
-
   try {
-    const readVocabRes = await readVocabs(+id, userId);
+    let readVocabRes;
+    let userId;
+    if (!req.decoded) {
+      readVocabRes = await readVocabsWithoutLogin(+id);
+    } else {
+      userId = req.decoded.id;
+      readVocabRes = await readVocabs(+id, userId);
+    }
     return res.json({
       status: statusCode.OK,
       data: readVocabRes,
