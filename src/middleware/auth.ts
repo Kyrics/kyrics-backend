@@ -9,7 +9,9 @@ const decodeToken = async (req: Request, res: Response, next: NextFunction): Pro
   const token = req.headers['x-access-token'] as string;
   if (!token) {
     next();
+    console.log('여기로 들어왔당');
   } else {
+    console.log(token);
     const user = await jwtVerify(token);
     if (user === TOKEN_EXPIRED) {
       return res.json({
