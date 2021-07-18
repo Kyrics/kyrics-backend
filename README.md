@@ -7,8 +7,12 @@
 
 <br>
 
-![node_badge](https://img.shields.io/badge/node-v12.17.0-green)
+![node_badge](https://img.shields.io/badge/node-v12.17.0-purple)
 ![npm_bedge](https://img.shields.io/badge/npm-v6.14.4-blue)
+![express_bedge](https://img.shields.io/badge/express-v4.17.1-purple)
+![mysql2](https://img.shields.io/badge/mysql2-v2.2.5-black)
+![sequelize_bedge](https://img.shields.io/badge/sequelize-v6.6.4-purple)
+![swagger_bedge](https://img.shields.io/badge/swagger-v4.1.6-pink)
 
 * <b> BE SOPT 28th WEBJAM
     
