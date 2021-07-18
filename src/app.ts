@@ -1,5 +1,4 @@
 import express, { Request, Response, NextFunction } from 'express';
-import dotenv from 'dotenv';
 import path from 'path';
 import YAML from 'yamljs';
 import swaggerUI from 'swagger-ui-express';
@@ -7,12 +6,6 @@ import cors from 'cors';
 import sequelize from './models';
 import router from './router';
 import { PORT } from './common/env';
-
-dotenv.config();
-
-sequelize.sync({ force: false }).catch((error) => {
-  console.error(error);
-});
 
 const app = express();
 const swaggerSpec = YAML.load(path.join(__dirname, '../build/swagger.yaml'));
@@ -43,29 +36,15 @@ interface ExpressError extends Error {
 app.use((err: ExpressError, req: Request, res: Response, next: NextFunction) => {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'production' ? err : {};
-
-  // render the error page
   res.status(err.status || 500);
-  res.render('error');
 });
 
+sequelize.sync({ force: false });
+
 app
-  .listen(PORT || 8080, () => {
-    console.log(`
-    ################################################
-    🛡️  Server listening on port: ${PORT || 8080} 🛡️
-    ################################################
-  `);
-    sequelize
-      .authenticate()
-      .then(async () => {
-        console.log('connection success');
-      })
-      .catch((e) => {
-        console.log('TT : ', e);
-      });
+  .listen(PORT || 8081, () => {
+    sequelize.authenticate();
   })
-  .on('error', (err) => {
-    console.error(err);
+  .on('error', () => {
     process.exit(1);
   });
