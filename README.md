@@ -8,11 +8,11 @@
 <br>
 
 ![node_badge](https://img.shields.io/badge/node-v12.17.0-purple)
-![npm_bedge](https://img.shields.io/badge/npm-v6.14.4-blue)
-![express_bedge](https://img.shields.io/badge/express-v4.17.1-purple)
+![npm_badge](https://img.shields.io/badge/npm-v6.14.4-blue)
+![express_badge](https://img.shields.io/badge/express-v4.17.1-purple)
 ![mysql2](https://img.shields.io/badge/mysql2-v2.2.5-black)
-![sequelize_bedge](https://img.shields.io/badge/sequelize-v6.6.4-purple)
-![swagger_bedge](https://img.shields.io/badge/swagger-v4.1.6-pink)
+![sequelize_badge](https://img.shields.io/badge/sequelize-v6.6.4-purple)
+![swagger_badge](https://img.shields.io/badge/swagger-v4.1.6-pink)
 
 * <b> BE SOPT 28th WEBJAM
     
@@ -39,8 +39,8 @@
 |**Social Login**|구글과 페이스북 소셜 로그인|가영|☑️|
 |**Artist**|아티스트별 노래 조회|가영|☑️|
 |**Study**|노래별 가수, 앨범, 가사, 단어 조회|청하|☑️|
-|**Mypage**|사용자 정보 조회, 이메일 수정|청하|☑️|
-|**MySong**|노래 즐겨찾기|청하|☑️|
+|**MyPage**|사용자 정보 조회, 이메일 수정|청하|☑️|
+|**MySongs**|노래 즐겨찾기|청하|☑️|
 |**MyVocab**|단어 즐겨찾기|서현|☑️|
 
 <br>
