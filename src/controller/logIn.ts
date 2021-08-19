@@ -4,9 +4,7 @@ import { signupIfUserNotFoundAndLogin, socialLoginInput } from '../service/socia
 
 const socialLogin = async (req: Request, res: Response) => {
   const { name, socialId, email, profileImageUrl, socialType } = req.body;
-  console.log(req.body);
   if (!name || !socialId || !socialType) {
-    console.log(name, socialId, email);
     return res.json({
       status: 400,
       message: '필요한 값이 없습니다.',
