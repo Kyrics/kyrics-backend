@@ -1,4 +1,4 @@
-# 💜 Kyrics
+# 💜 [Kyrics](https://kyrics.org)
 <img style="border: 1px solid black !important; border-radius:20px;" src="https://kyrics.s3.ap-northeast-2.amazonaws.com/%ED%82%A4%EB%A6%AD+%EB%A1%9C%EA%B3%A0-01.jpg" width="100%" />
 
 ### Learn Korean through your favorite K-Pop artists and songs!
@@ -18,7 +18,7 @@
     
 * Term : 2021.06.26 ~ 2021.07.17
 
-* [API Spec](https://kyricserver.com/api-docs/)
+* [API Spec](https://server.kyrics.org/api-docs/)
 
 * [Coding Convention](https://github.com/Kyrics/kyrics-backend/blob/develop/CODINGCONVENTION.md)
 
