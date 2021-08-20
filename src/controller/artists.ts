@@ -11,7 +11,6 @@ const getArtists = async (req: Request, res: Response) => {
         message: '요청 성공',
       });
     } catch (error) {
-      console.error(error);
       return res.json({
         status: statusCode.INTERNAL_SERVER_ERROR,
         message: '서버 내부 오류',

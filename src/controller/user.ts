@@ -28,7 +28,6 @@ const getUser = async (req: Request, res: Response) => {
       message: '요청 성공',
     });
   } catch (error) {
-    console.error(error);
     return res.json({
       status: statusCode.INTERNAL_SERVER_ERROR,
       message: '서버 내부 오류',
@@ -51,7 +50,6 @@ const removeUser = async (req: Request, res: Response) => {
       message: '요청 성공',
     });
   } catch (error) {
-    console.error(error);
     return res.json({
       status: statusCode.INTERNAL_SERVER_ERROR,
       message: '서버 내부 오류',
@@ -75,7 +73,6 @@ const modifyUserEmail = async (req: Request, res: Response) => {
       message: '수정 성공',
     });
   } catch (error) {
-    console.error(error);
     if (error.message === '유효하지 않은 아이디') {
       return res.json({
         status: statusCode.BAD_REQUEST,
@@ -105,7 +102,6 @@ const getMyVocabs = async (req: Request, res: Response) => {
       message: '요청 성공',
     });
   } catch (error) {
-    console.error(error);
     return res.json({
       status: statusCode.INTERNAL_SERVER_ERROR,
       message: '서버 내부 오류',
@@ -129,7 +125,6 @@ const postMySong = async (req: Request, res: Response) => {
       message: '요청 성공',
     });
   } catch (error) {
-    console.error(error);
     return res.json({
       status: statusCode.INTERNAL_SERVER_ERROR,
       message: '서버 내부 오류',
@@ -153,7 +148,6 @@ const removeMySong = async (req: Request, res: Response) => {
       message: '삭제 성공',
     });
   } catch (error) {
-    console.error(error);
     return res.json({
       status: statusCode.INTERNAL_SERVER_ERROR,
       message: '서버 내부 에러',
@@ -177,7 +171,6 @@ const getMySongs = async (req: Request, res: Response) => {
       message: '요청 성공',
     });
   } catch (error) {
-    console.error(error);
     return res.json({
       status: statusCode.INTERNAL_SERVER_ERROR,
       message: '서버 내부 오류',
@@ -201,7 +194,6 @@ const postMyVocab = async (req: Request, res: Response) => {
       message: '요청 성공',
     });
   } catch (error) {
-    console.error(error);
     return res.json({
       status: statusCode.INTERNAL_SERVER_ERROR,
       message: '서버 내부 오류',
@@ -225,7 +217,6 @@ const removeMyVocab = async (req: Request, res: Response) => {
       message: '삭제 성공',
     });
   } catch (error) {
-    console.error(error);
     return res.json({
       status: statusCode.INTERNAL_SERVER_ERROR,
       message: '서버 내부 에러',
