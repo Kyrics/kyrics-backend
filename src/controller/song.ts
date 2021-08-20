@@ -7,13 +7,13 @@ const getSong = async (req: Request, res: Response) => {
   try {
     const userId = req.decoded ? req.decoded.id : undefined;
     const readSongRes = await readSong(+id, userId);
-    return res.json({
+    return res.status(200).json({
       status: statusCode.OK,
       data: readSongRes,
       message: '요청 성공',
     });
   } catch (error) {
-    return res.json({
+    return res.status(500).json({
       status: statusCode.INTERNAL_SERVER_ERROR,
       message: '서버 내부 오류',
     });
@@ -31,13 +31,13 @@ const getVocabsInSong = async (req: Request, res: Response) => {
       userId = req.decoded.id;
       readVocabRes = await readVocabs(+id, userId);
     }
-    return res.json({
+    return res.status(200).json({
       status: statusCode.OK,
       data: readVocabRes,
       message: '요청 성공',
     });
   } catch (error) {
-    return res.json({
+    return res.status(500).json({
       status: statusCode.INTERNAL_SERVER_ERROR,
       message: '서버 내부 오류',
     });
