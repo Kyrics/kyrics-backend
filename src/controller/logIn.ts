@@ -19,7 +19,7 @@ const socialLogin = async (req: Request, res: Response) => {
   };
   try {
     const { jwtSignRes: token, isNewUser } = await signupIfUserNotFoundAndLogin(input);
-    return res.json({
+    return res.status(200).json({
       status: statusCode.OK,
       data: {
         token,
