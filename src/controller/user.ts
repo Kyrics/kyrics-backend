@@ -28,7 +28,6 @@ const getUser = async (req: Request, res: Response) => {
       message: '요청 성공',
     });
   } catch (error) {
-    console.error(error);
     return res.status(500).json({
       status: statusCode.INTERNAL_SERVER_ERROR,
       message: '서버 내부 오류',

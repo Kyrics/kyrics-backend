@@ -10,9 +10,6 @@ jobs:
     name: CD Pipeline
     runs-on: ubuntu-18.04
 
-    environment:
-        name: test
-
     strategy:
       matrix:
         node-version: ['12.x']
@@ -33,13 +30,12 @@ jobs:
           echo DB_PORT= ${{ secrets.DB_PORT }} >> .env
           echo JWT_EXPIRES_IN=${{ secrets.JWT_EXPIRES_IN }} >> .env
           cat .env
-      # Initialize Node.js
+      
       - name: Install Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
 
-      # Install project dependencies and build
       - name: Install dependencies
         run: npm install
       - name: Build Swagger API docs
@@ -47,14 +43,13 @@ jobs:
       - name: Run build
         run: npm run build
 
-      # Install AWS CLI 2
       - name: Install AWS CLI 2
         run: |
           curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
           unzip awscliv2.zip
           which aws
           sudo ./aws/install --bin-dir /usr/local/bin --install-dir /usr/local/aws-cli --update
-      # Configure AWS credentials
+      
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -62,18 +57,17 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      # Make ZIP file with source code
+      
       - name: Generate deployment package
         run: zip -r deploy.zip . -x '*.git*' './src/*' './img/*' 'README.md' './aws/*' awscliv2.zip
 
-      # Deploy to Elastic Beanstalk
       - name: Test-deploy to EB
         uses: einaregilsson/beanstalk-deploy@v14
         with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           application_name: kyrics          
-          environment_name: Kyrics-test-env
+          environment_name: Kyrics-env-prod
           region: ${{ secrets.AWS_REGION }}
           version_label: ${{ github.SHA }}
           deployment_package: deploy.zip
