@@ -7,7 +7,7 @@ const socialLogin = async (req: Request, res: Response) => {
   console.log(req.body);
   if (!name || !socialId || !socialType) {
     console.log(name, socialId, email);
-    return res.json({
+    return res.status(400).json({
       status: 400,
       message: '필요한 값이 없습니다.',
     });
@@ -21,7 +21,7 @@ const socialLogin = async (req: Request, res: Response) => {
   };
   try {
     const { jwtSignRes: token, isNewUser } = await signupIfUserNotFoundAndLogin(input);
-    return res.json({
+    return res.status(200).json({
       status: statusCode.OK,
       data: {
         token,
@@ -31,7 +31,7 @@ const socialLogin = async (req: Request, res: Response) => {
     });
   } catch (error) {
     console.error(error);
-    return res.json({
+    return res.status(500).json({
       status: statusCode.INTERNAL_SERVER_ERROR,
       message: '서버 내부 오류',
     });
