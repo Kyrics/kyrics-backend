@@ -1,5 +1,18 @@
 patch:
   summary: 유저가 이메일을 수정한 후 유저 정보를 가져옵니다.
+  consumes:
+    - application/json
+  requestBody:
+    x-name: body
+    required: true
+    content:
+      application/json:
+        schema:
+          required:
+          - email
+          properties:
+            email:
+              type: string
   responses:
     200:
       description: 요청 성공
