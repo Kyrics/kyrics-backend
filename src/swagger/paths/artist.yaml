@@ -1,5 +1,7 @@
 get:
   summary: 해당 id의 가수의 노래들을 가져옵니다.
+  tags:
+    - /artist
   parameters:
     - in: path
       name: id

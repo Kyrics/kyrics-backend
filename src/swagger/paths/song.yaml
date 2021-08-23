@@ -1,5 +1,7 @@
 get:
   summary: 해당 id의 노래의 정보(가사 포함)를 가져옵니다.
+  tags:
+    - /song
   parameters:
     - in: path
       name: id

@@ -1,5 +1,7 @@
 get:
   summary: my vocab을 가져옵니다.
+  tags:
+    - /user
   responses:
     200:
       description: 요청 성공

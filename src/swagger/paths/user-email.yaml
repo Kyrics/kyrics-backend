@@ -1,5 +1,7 @@
 patch:
   summary: 유저가 이메일을 수정한 후 유저 정보를 가져옵니다.
+  tags:
+    - /user
   consumes:
     - application/json
   requestBody:

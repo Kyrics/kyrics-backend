@@ -1,5 +1,7 @@
 get:
   summary: 학습화면에서 해당 노래의 Key Expression을 가져옵니다.
+  tags:
+   - /song
   parameters:
     - in: path
       name: id
