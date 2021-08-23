@@ -1,5 +1,7 @@
 get:
   summary: 로그인한 유저의 마이페이지 정보를 가져옵니다.
+  tags:
+    - /user
   responses:
     200:
       description: 요청 성공
@@ -40,6 +42,8 @@ get:
       $ref: '../openapi.yaml#/components/responses/InternalServerError'
 delete:
   summary: kyrics를 탈퇴합니다.
+  tags:
+    - /user
   responses:
     200:
       content:

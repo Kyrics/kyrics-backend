@@ -1,5 +1,7 @@
 post:
   summary: 해당 id를 가진 노래를 유저의 my songs에서 추가 합니다.
+  tags:
+    - /user
   parameters:
     - in: path
       name: id
@@ -28,6 +30,8 @@ post:
       $ref: '../openapi.yaml#/components/responses/InternalServerError'
 delete:
   summary: 해당 id를 가진 노래를 유저의 my songs에서 삭제합니다.
+  tags:
+    - /user
   parameters:
   - in: path
     name: id

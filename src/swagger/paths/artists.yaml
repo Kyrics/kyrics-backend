@@ -1,5 +1,7 @@
 get:
   summary: 메인화면에 보일 artist의 정보를 가져옵니다.
+  tags:
+    - /artists
   responses:
     200:
       description: 요청 성공

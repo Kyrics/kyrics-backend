@@ -1,5 +1,7 @@
 get:
   summary: 로그인한 유저의 My Songs를 조회합니다.
+  tags:
+    - /user
   responses:
     200:
       description: 요청 성공
