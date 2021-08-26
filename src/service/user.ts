@@ -1,8 +1,9 @@
-import { QueryTypes } from 'sequelize';
-import sequelize from '../models';
 import User from '../models/user';
 import MySongs from '../models/mySongs';
 import MyVocab from '../models/myVocab';
+import { deleteUserById, findUserById, updateUser } from '../repository/user';
+import { readMySongsByUserId, createMySong as createMySongRepo, destroyMySong } from '../repository/mySongs';
+import { createMyVocabByUserId, destroyMyVocab, readMyVocabByUserId } from '../repository/myVocabs';
 
 interface IUserRes{
   id: number;
@@ -26,90 +27,62 @@ interface IMyVocabRes{
   EngExample: string;
 }
 
-const readUser = async(userId: number): Promise<IUserRes | Error> => {
-  const readUserRes = await User.findOne({
-    where: {id: userId},
-    attributes: ['id', `name`, `email`, `profileImageUrl`]
-  })
+const readUser = async(userId: number): Promise<IUserRes|Error> => {
+  const readUserRes: IUserRes = await findUserById(userId);
+  if (!readUserRes) {
+    return new Error('해당 id의 유저가 없습니다.');
+  }
   return readUserRes;
 }
 
-const deleteUser = async (userId: number): Promise<number | Error> => {
-  const destroyMySongsRes = await User.destroy({
-    where: {
-      id: userId
-    }
-  });
-  return destroyMySongsRes;
+const deleteUser = async (userId: number): Promise<number|Error> => {
+  const destroyUserByIdRes = await deleteUserById(userId);
+  if (!destroyUserByIdRes) {
+    return new Error('이미 존재하지 않는 유저입니다.');
+  }
+  return destroyUserByIdRes;
 };
 
-const updateUserEmail = async (userId: number, newEmail: string): Promise<User | Error> => {
-  const findUserRes = await User.findOne({where : {id: userId}});
+const updateUserEmail = async (userId: number, newEmail: string): Promise<User|Error> => {
+  const findUserRes = await findUserById(userId);
   if (!findUserRes) {
-    throw Error('유효하지 않은 아이디');
+    return Error('유효하지 않은 아이디');
   }
   findUserRes.email = newEmail;
-  await findUserRes.save();
-  return findUserRes;
+  const updateUserEmailRes = await updateUser(findUserRes);
+  return updateUserEmailRes;
 };
 
 const readMySongs = async(userId: number): Promise<IMySongsRes[] | Error> => {
-  const readMySongsQuery = `SELECT my_songs.song_id as id, song.title, artist.\`name\` as artist, album.album_image_url as albumImageUrl
-                            FROM my_songs
-                            LEFT OUTER JOIN song ON (my_songs.song_id = song.id)
-                            LEFT OUTER JOIN album ON (song.album_id = album.id)
-                            INNER JOIN song_artist ON (song.id = song_artist.song_id)
-                            INNER JOIN artist ON (song_artist.artist_id = artist.id)
-                            WHERE my_songs.user_id = ${userId}
-                            ORDER BY my_songs.created_at DESC;`;
-  const readMySongsRes = await sequelize.query(readMySongsQuery, { type: QueryTypes.SELECT }) as IMySongsRes[];
-  return readMySongsRes;
+  return readMySongsByUserId(userId);
 }
 
 const createMySong = async (id: number, userId: number): Promise<MySongs | Error> => {
-  const createMySongsRes = await MySongs.create({
-    userId,
-    songId: id,
-  });
-  return createMySongsRes;
+  const createMySongRes = await createMySongRepo(id, userId);
+  return createMySongRes;
 };
 
 const deleteMySong = async (id: number, userId: number): Promise<number | Error> => {
-  const destroyMySongsRes = await MySongs.destroy({
-    where: {
-      userId,
-      songId: id,
-    },
-  });
-  return destroyMySongsRes;
+  const destroyMySongRes = await destroyMySong(id, userId);
+  if(!destroyMySong) {
+    return new Error('MySongs에 존재하지 않는 노래입니다.');
+  }
+  return destroyMySongRes;
 };
 
 const readMyVocab = async(userId: number): Promise<IMyVocabRes[] | Error> => {
-  const readMyVocabQuery = `SELECT my_vocab.key_expression_id as id, key_expression.kor, key_expression.eng, key_expression.kor_example as korExample, key_expression.eng_example as engExample
-  FROM my_vocab
-  LEFT OUTER JOIN key_expression ON (my_vocab.key_expression_id = key_expression.id)
-  WHERE my_vocab.user_id = ${userId}
-  ORDER BY my_vocab.created_at DESC;`;
-  const readMyVocabRes = await sequelize.query(readMyVocabQuery, { type: QueryTypes.SELECT }) as IMyVocabRes[];
-  return readMyVocabRes;
+  return readMyVocabByUserId(userId);
 }
 
 const createMyVocab = async (id: number, userId: number): Promise<MyVocab | Error> => {
-  const createMyVocabRes = await MyVocab.create({
-    userId,
-    keyExpressionId: id,
-  });
-  return createMyVocabRes;
+    return createMyVocabByUserId(id, userId);
   };
   
   const deleteMyVocab = async (id: number, userId: number): Promise<number | Error> => {
-    const destroyMyVocabRes = await MyVocab.destroy({
-      where: {
-        userId,
-        keyExpressionId: id,
-      },
-    });
-    return destroyMyVocabRes;
+    if (!deleteMyVocab) {
+      return new Error('myVocab에 존재하지 않는 vocab입니다.');
+    }
+    return destroyMyVocab(id, userId);
   };
 
-export { readUser, deleteUser, updateUserEmail, readMySongs, createMySong, deleteMySong, readMyVocab, createMyVocab, deleteMyVocab };
+export { readUser, deleteUser, updateUserEmail, readMySongs, createMySong, deleteMySong, readMyVocab, createMyVocab, deleteMyVocab, IMySongsRes, IMyVocabRes };
