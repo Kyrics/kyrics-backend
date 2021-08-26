@@ -33,4 +33,18 @@ const destroyMySong = async (id: number, userId: number) => {
   });
   return destroyMySongsRes;
 }
-export { readMySongsByUserId, createMySong, destroyMySong }
+
+const isSongInUserSongs = async (songId: number, userId: number): Promise<Boolean | Error> => {
+  try {
+    const findMySongRes = await MySongs.findOne({
+      where: {
+        userId,
+        songId,
+      }
+    });
+    return !!findMySongRes;
+  } catch (error) {
+    return new Error('isSaved 체크에 실패했습니다.');
+  }
+}
+export { readMySongsByUserId, createMySong, destroyMySong, isSongInUserSongs }
