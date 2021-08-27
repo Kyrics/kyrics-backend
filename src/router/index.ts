@@ -11,17 +11,11 @@ import { getArtist } from '../controller/artist';
 
 const router = express.Router();
 
-router.use('/', (req, res) => {
-  res.status(200).json({
-    message: 'Welcome to Kyrics API',
-  });
-});
-
 router.use('/health-check', (req, res) => {
   res.status(200).json({
     message: 'health check: OK',
   });
-})
+});
 
 const swaggerSpec = YAML.load(path.join(__dirname, '../../build/swagger.yaml'));
 router.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
