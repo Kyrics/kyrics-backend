@@ -5,7 +5,7 @@ import statusCode from '../module/statusCode';
 const TOKEN_EXPIRED = -3;
 const TOKEN_INVALID = -2;
 
-const decodeToken = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
+const decodeToken = async (req: Request, res: Response, next: NextFunction) => {
   const token = req.headers['x-access-token'] as string;
   if (!token) {
     next();

@@ -15,7 +15,7 @@ const getSong = async (req: Request, res: Response) => {
   } catch (error) {
     return res.status(500).json({
       status: statusCode.INTERNAL_SERVER_ERROR,
-      message: '서버 내부 오류',
+      message: error.message,
     });
   }
 };
@@ -39,7 +39,7 @@ const getVocabsInSong = async (req: Request, res: Response) => {
   } catch (error) {
     return res.status(500).json({
       status: statusCode.INTERNAL_SERVER_ERROR,
-      message: '서버 내부 오류',
+      message: error.message,
     });
   }
 };
