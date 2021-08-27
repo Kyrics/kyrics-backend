@@ -1,14 +1,21 @@
-import { QueryTypes } from "sequelize";
-import sequelize from "../models";
-import Artist from '../models/artist'
+import { QueryTypes } from 'sequelize';
+import sequelize from '../models';
+import Artist from '../models/artist';
 
-const findArtistById = async (id: number): Promise<Artist|null> => {
+const findMainArtists = async (limit: number): Promise<Artist[]> => {
+  const findArtistsRes = await Artist.findAll({
+    attributes: ['id', 'name', 'profileImageUrl', 'logoImageUrl'],
+    limit,
+  });
+  return findArtistsRes;
+};
+
+const findArtistById = async (id: number): Promise<Artist> => {
   const findArtistByIdRes = await Artist.findByPk(id, {
     attributes: ['id', 'name', ['background_image_url', 'backgroundImageUrl']],
   });
   return findArtistByIdRes;
-}
-
+};
 
 const findSongWithAlbumCover = async (id: number) => {
   const query = `SELECT song.id, title, album_image_url as albumImageUrl, artist.name as artist
@@ -21,6 +28,6 @@ const findSongWithAlbumCover = async (id: number) => {
   `;
   const findSongWithCover = await sequelize.query(query, { type: QueryTypes.SELECT });
   return findSongWithCover;
-}
+};
 
-export { findArtistById, findSongWithAlbumCover };
+export { findMainArtists, findArtistById, findSongWithAlbumCover };

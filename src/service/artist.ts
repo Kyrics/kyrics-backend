@@ -1,4 +1,4 @@
-import { findArtistById, findSongWithAlbumCover } from '../repository/artist'
+import { findArtistById, findSongWithAlbumCover } from '../repository/artist';
 
 interface IReadArtistRes {
   id: number;
