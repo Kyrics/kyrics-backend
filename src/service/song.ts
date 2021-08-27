@@ -1,8 +1,8 @@
-import { QueryTypes } from 'sequelize';
-import sequelize, { KeyExpression } from '../models';
+import KeyExpression from '../models/keyExpression';
 import { findSongById } from '../repository/song';
 import { isSongInUserSongs } from '../repository/mySongs';
 import { splitBySeperator } from '../module/seperator';
+import { findKeyExpressionBySongId, findKeyExpressionBySongIdWithLogin } from '../repository/keyExpression';
 
 interface ILyrics {
   startTime: number;
@@ -33,56 +33,33 @@ interface IReadVocabsRes {
   keyExpressionId: number | null;
 }
 
+const readSong = async (songId: number, userId: number): Promise<IReadSongRes> => {
+  const { id, title, youtubeUrl, korLyrics, engLyrics, lyricsStartTime, lyricsDuration, artists, album } =
+    await findSongById(songId);
 
-const readSong = async (songId: number, userId: number): Promise<IReadSongRes|Error> => {
-  try {
-    const {
-      id,
-      title,
-      youtubeUrl,
-      korLyrics,
-      engLyrics,
-      lyricsStartTime,
-      lyricsDuration,
-      artists,
-      album
-    } = await findSongById(songId);
-    
-    const lyricsObjAll = splitBySeperator(korLyrics, engLyrics, lyricsStartTime, lyricsDuration);
-    let isSaved = false;
-    if (userId && isSongInUserSongs(songId, userId)) {
-      isSaved = true;
-    }  
-
-    return {
-      id,
-      title,
-      artist: artists[0].name,
-      albumImageUrl: album.albumImageUrl,
-      youtubeUrl,
-      isSaved,
-      lyrics: lyricsObjAll
-    }
-  } catch(error) {
-    return error;
+  const lyricsObjAll = splitBySeperator(korLyrics, engLyrics, lyricsStartTime, lyricsDuration);
+  let isSaved = false;
+  if (userId && isSongInUserSongs(songId, userId)) {
+    isSaved = true;
   }
-}
-
-const readVocabsWithoutLogin = async (songId: number): Promise<KeyExpression[] | Error> => {
-  const findVocabsRes = await KeyExpression.findAll({
-    attributes: ['id', 'kor', 'eng', ['kor_example', 'korExample'], ['eng_example', 'engExample']],
-    where: { songId },
-  });
-  return findVocabsRes;
+  return {
+    id,
+    title,
+    artist: artists[0].name,
+    albumImageUrl: album.albumImageUrl,
+    youtubeUrl,
+    isSaved,
+    lyrics: lyricsObjAll,
+  };
 };
 
-const readVocabs = async (songId: number, userId: number): Promise<IReadVocabsRes[] | Error> => {
-  const vocabQuery = `SELECT id, kor, eng, kor_example as korExample, eng_example as engExample, key_expression_id as keyExpressionId
-                        FROM key_expression LEFT OUTER JOIN my_vocab
-                        ON (key_expression.id = my_vocab.key_expression_id
-                        AND my_vocab.user_id=${userId})
-                        WHERE key_expression.song_id=${songId};`;
-  const readVocab = (await sequelize.query(vocabQuery, { type: QueryTypes.SELECT })) as IReadVocabsRes[];
+const readVocabsWithoutLogin = async (songId: number): Promise<KeyExpression[]> => {
+  const findKeyExpressionRes = await findKeyExpressionBySongId(songId);
+  return findKeyExpressionRes;
+};
+
+const readVocabs = async (songId: number, userId: number): Promise<IReadVocabsRes[]> => {
+  const readVocab = await findKeyExpressionBySongIdWithLogin(songId, userId);
 
   const vocabs = readVocab.map((vocab) => {
     const isSaved = !!vocab.keyExpressionId;
@@ -90,7 +67,8 @@ const readVocabs = async (songId: number, userId: number): Promise<IReadVocabsRe
     delete vocabWithoutKeyExpressionId.keyExpressionId;
     return { ...vocabWithoutKeyExpressionId, isSaved };
   });
+
   return vocabs;
 };
 
-export { readSong, readVocabsWithoutLogin, readVocabs };
+export { readSong, readVocabsWithoutLogin, readVocabs, IReadVocabsRes };
