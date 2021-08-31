@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import statusCode from '../module/statusCode';
+import statusCode from '../util/statusCode';
 import { readArtist } from '../service/artist';
 
 const getArtist = async (req: Request, res: Response) => {

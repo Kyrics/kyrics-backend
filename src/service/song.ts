@@ -1,7 +1,7 @@
 import KeyExpression from '../models/keyExpression';
 import { findSongById } from '../repository/song';
 import { isSongInUserSongs } from '../repository/mySongs';
-import { splitBySeperator } from '../module/seperator';
+import { splitBySeperator } from '../util/seperator';
 import { findKeyExpressionBySongId, findKeyExpressionBySongIdWithLogin } from '../repository/keyExpression';
 
 interface ILyrics {
