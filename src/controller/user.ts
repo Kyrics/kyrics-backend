@@ -30,7 +30,7 @@ const getUser = async (req: Request, res: Response) => {
   } catch (error) {
     return res.status(500).json({
       status: statusCode.INTERNAL_SERVER_ERROR,
-      message: '서버 내부 오류',
+      message: error.message,
     });
   }
 };
@@ -52,7 +52,7 @@ const removeUser = async (req: Request, res: Response) => {
   } catch (error) {
     return res.status(500).json({
       status: statusCode.INTERNAL_SERVER_ERROR,
-      message: '서버 내부 오류',
+      message: error.message,
     });
   }
 };
@@ -81,7 +81,7 @@ const modifyUserEmail = async (req: Request, res: Response) => {
     }
     return res.status(500).json({
       status: statusCode.INTERNAL_SERVER_ERROR,
-      message: '서버 내부 오류',
+      message: error.message,
     });
   }
 };
@@ -104,7 +104,7 @@ const getMyVocabs = async (req: Request, res: Response) => {
   } catch (error) {
     return res.status(500).json({
       status: statusCode.INTERNAL_SERVER_ERROR,
-      message: '서버 내부 오류',
+      message: error.message,
     });
   }
 };
@@ -119,7 +119,7 @@ const postMySong = async (req: Request, res: Response) => {
     });
   }
   try {
-    await createMySong(+id, userId); // createMySong이 실패하면 에러를 던지게 한다.
+    await createMySong(+id, userId);
     return res.status(200).json({
       status: statusCode.OK,
       message: '요청 성공',
@@ -127,7 +127,7 @@ const postMySong = async (req: Request, res: Response) => {
   } catch (error) {
     return res.status(500).json({
       status: statusCode.INTERNAL_SERVER_ERROR,
-      message: '서버 내부 오류',
+      message: error.message,
     });
   }
 };
@@ -148,10 +148,9 @@ const removeMySong = async (req: Request, res: Response) => {
       message: '삭제 성공',
     });
   } catch (error) {
-    console.error(error);
     return res.status(500).json({
       status: statusCode.INTERNAL_SERVER_ERROR,
-      message: '서버 내부 에러',
+      message: error.message,
     });
   }
 };
@@ -174,7 +173,7 @@ const getMySongs = async (req: Request, res: Response) => {
   } catch (error) {
     return res.status(500).json({
       status: statusCode.INTERNAL_SERVER_ERROR,
-      message: '서버 내부 오류',
+      message: error.message,
     });
   }
 };
@@ -197,7 +196,7 @@ const postMyVocab = async (req: Request, res: Response) => {
   } catch (error) {
     return res.status(500).json({
       status: statusCode.INTERNAL_SERVER_ERROR,
-      message: '서버 내부 오류',
+      message: error.message,
     });
   }
 };
@@ -220,7 +219,7 @@ const removeMyVocab = async (req: Request, res: Response) => {
   } catch (error) {
     return res.status(500).json({
       status: statusCode.INTERNAL_SERVER_ERROR,
-      message: '서버 내부 에러',
+      message: error.message,
     });
   }
 };

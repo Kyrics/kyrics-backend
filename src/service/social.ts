@@ -1,9 +1,10 @@
 import { User } from '../models';
 import { jwtSign } from '../module/jwt';
+import { createUser, findUserBySocialAccount, updateUser } from '../repository/user';
 
 type SocialType = 'Google' | 'Facebook';
 
-interface socialLoginInput {
+interface userInfoDto {
   name: string;
   socialId: string;
   email?: string;
@@ -11,39 +12,37 @@ interface socialLoginInput {
   socialType: SocialType;
 }
 
-const signupIfUserNotFoundAndLogin = async (input: socialLoginInput) => {
-  const { name, socialId, email, profileImageUrl, socialType } = input;
-  const userRes = await User.findOne({
-    where: {
-      socialId,
-      socialType,
-    },
-  });
+interface signUpRes {
+  jwtSignRes: string;
+  isNewUser: boolean;
+}
+
+const signupIfUserNotFoundOrLogin = async (input: userInfoDto): Promise<signUpRes> => {
+  const { name, socialId, profileImageUrl, socialType } = input;
+
+  const userRes = await findUserBySocialAccount(socialId, socialType);
+
   let user: User;
   let isNewUser = false;
   if (!userRes) {
-    user = await User.create({
-      name,
-      socialId,
-      email,
-      profileImageUrl,
-      socialType,
-    });
+    user = await createUser(input);
     isNewUser = true;
   } else {
-    user = await User.findOne({ where: { socialId, socialType } });
+    user = await findUserBySocialAccount(socialId, socialType);
     user.name = name;
     user.profileImageUrl = profileImageUrl || user.profileImageUrl;
-    await user.save();
+    await updateUser(user);
   }
-
-  const signinInput = {
+  const jwtSignRes = await jwtSign({
     id: user.id,
     socialId,
     socialType,
+  });
+
+  return {
+    jwtSignRes,
+    isNewUser,
   };
-  const jwtSignRes = await jwtSign(signinInput);
-  return { jwtSignRes, isNewUser };
 };
 
-export { SocialType, socialLoginInput, signupIfUserNotFoundAndLogin };
+export { SocialType, userInfoDto, signupIfUserNotFoundOrLogin };

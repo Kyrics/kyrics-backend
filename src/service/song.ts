@@ -1,7 +1,8 @@
-import { QueryTypes } from 'sequelize';
-import sequelize, { KeyExpression } from '../models';
-import Song from '../models/song';
-import MySongs from '../models/mySongs';
+import KeyExpression from '../models/keyExpression';
+import { findSongById } from '../repository/song';
+import { isSongInUserSongs } from '../repository/mySongs';
+import { splitBySeperator } from '../module/seperator';
+import { findKeyExpressionBySongId, findKeyExpressionBySongIdWithLogin } from '../repository/keyExpression';
 
 interface ILyrics {
   startTime: number;
@@ -32,73 +33,33 @@ interface IReadVocabsRes {
   keyExpressionId: number | null;
 }
 
-const readSong = async (songId: number, userId: number): Promise<IReadSongRes | Error> => {
-  const { id, title, youtubeUrl, korLyrics, engLyrics, lyricsStartTime, lyricsDuration } = await Song.findByPk(songId);
-  const artistQuery = `SELECT \`name\` as artist
-    FROM song_artist JOIN artist
-    ON (song_artist.artist_id=artist.id
-    AND song_artist.song_id=${songId});`;
-  const albumQuery = `SELECT album_image_url as albumImageUrl
-    FROM album, song
-    WHERE song.id=${songId}
-    AND album.id = song.album_id;`;
-  const readArtist = (await sequelize.query(artistQuery, { type: QueryTypes.SELECT })) as IReadSongWithArtistQueryRes[];
-  const readAlbumImgUrl = (await sequelize.query(albumQuery, {
-    type: QueryTypes.SELECT,
-  })) as IReadSongWithArtistQueryRes[];
+const readSong = async (songId: number, userId: number): Promise<IReadSongRes> => {
+  const { id, title, youtubeUrl, korLyrics, engLyrics, lyricsStartTime, lyricsDuration, artists, album } =
+    await findSongById(songId);
 
-  // lyrics 배열 만들기
-  const korLyricsList = korLyrics.split('/$');
-  const engLyricsList = engLyrics.split('/$');
-  const lyricsStartTimeList = lyricsStartTime.split('/$');
-  const lyricsDurationList = lyricsDuration.split('/$');
-
-  const lyricsObjAll = [];
-
-  for (let i = 0; i < korLyricsList.length; i += 1) {
-    lyricsObjAll.push({
-      startTime: +lyricsStartTimeList[i],
-      duration: +lyricsDurationList[i],
-      kor: korLyricsList[i],
-      eng: engLyricsList[i],
-    });
-  }
-
+  const lyricsObjAll = splitBySeperator(korLyrics, engLyrics, lyricsStartTime, lyricsDuration);
   let isSaved = false;
-
-  if (userId) {
-    const readIsSaved = await MySongs.findOne({ where: { user_id: userId, song_id: songId } });
-    if (readIsSaved) {
-      isSaved = true;
-    }
+  if (userId && isSongInUserSongs(songId, userId)) {
+    isSaved = true;
   }
-
   return {
     id,
     title,
-    artist: readArtist[0].artist,
-    albumImageUrl: readAlbumImgUrl[0].albumImageUrl,
+    artist: artists[0].name,
+    albumImageUrl: album.albumImageUrl,
     youtubeUrl,
     isSaved,
     lyrics: lyricsObjAll,
   };
 };
 
-const readVocabsWithoutLogin = async (songId: number): Promise<KeyExpression[] | Error> => {
-  const findVocabsRes = await KeyExpression.findAll({
-    attributes: ['id', 'kor', 'eng', ['kor_example', 'korExample'], ['eng_example', 'engExample']],
-    where: { songId },
-  });
-  return findVocabsRes;
+const readVocabsWithoutLogin = async (songId: number): Promise<KeyExpression[]> => {
+  const findKeyExpressionRes = await findKeyExpressionBySongId(songId);
+  return findKeyExpressionRes;
 };
 
-const readVocabs = async (songId: number, userId: number): Promise<IReadVocabsRes[] | Error> => {
-  const vocabQuery = `SELECT id, kor, eng, kor_example as korExample, eng_example as engExample, key_expression_id as keyExpressionId
-                        FROM key_expression LEFT OUTER JOIN my_vocab
-                        ON (key_expression.id = my_vocab.key_expression_id
-                        AND my_vocab.user_id=${userId})
-                        WHERE key_expression.song_id=${songId};`;
-  const readVocab = (await sequelize.query(vocabQuery, { type: QueryTypes.SELECT })) as IReadVocabsRes[];
+const readVocabs = async (songId: number, userId: number): Promise<IReadVocabsRes[]> => {
+  const readVocab = await findKeyExpressionBySongIdWithLogin(songId, userId);
 
   const vocabs = readVocab.map((vocab) => {
     const isSaved = !!vocab.keyExpressionId;
@@ -106,7 +67,8 @@ const readVocabs = async (songId: number, userId: number): Promise<IReadVocabsRe
     delete vocabWithoutKeyExpressionId.keyExpressionId;
     return { ...vocabWithoutKeyExpressionId, isSaved };
   });
+
   return vocabs;
 };
 
-export { readSong, readVocabsWithoutLogin, readVocabs };
+export { readSong, readVocabsWithoutLogin, readVocabs, IReadVocabsRes };

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import statusCode from '../module/statusCode';
-import { signupIfUserNotFoundAndLogin, socialLoginInput } from '../service/social';
+import { signupIfUserNotFoundOrLogin, userInfoDto } from '../service/social';
 
 const socialLogin = async (req: Request, res: Response) => {
   const { name, socialId, email, profileImageUrl, socialType } = req.body;
@@ -10,7 +10,7 @@ const socialLogin = async (req: Request, res: Response) => {
       message: '필요한 값이 없습니다.',
     });
   }
-  const input: socialLoginInput = {
+  const input: userInfoDto = {
     name,
     socialId,
     email,
@@ -18,7 +18,7 @@ const socialLogin = async (req: Request, res: Response) => {
     socialType,
   };
   try {
-    const { jwtSignRes: token, isNewUser } = await signupIfUserNotFoundAndLogin(input);
+    const { jwtSignRes: token, isNewUser } = await signupIfUserNotFoundOrLogin(input);
     return res.status(200).json({
       status: statusCode.OK,
       data: {
@@ -30,7 +30,7 @@ const socialLogin = async (req: Request, res: Response) => {
   } catch (error) {
     return res.json({
       status: statusCode.INTERNAL_SERVER_ERROR,
-      message: '서버 내부 오류',
+      message: error.message,
     });
   }
 };
