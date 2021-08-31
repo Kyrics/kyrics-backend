@@ -39,7 +39,7 @@ const readSong = async (songId: number, userId: number): Promise<IReadSongRes> =
 
   const lyricsObjAll = splitBySeperator(korLyrics, engLyrics, lyricsStartTime, lyricsDuration);
   let isSaved = false;
-  if (userId && isSongInUserSongs(songId, userId)) {
+  if (userId && (await isSongInUserSongs(songId, userId))) {
     isSaved = true;
   }
   return {
