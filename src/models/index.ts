@@ -1,5 +1,5 @@
 import { Sequelize } from 'sequelize-typescript';
-import dotenv from 'dotenv';
+import {DB_USERNAME, DB_HOST, DB_PASSWORD, DB_DBNAME } from "../common/env";
 import Album from './album';
 import AlbumArtist from './albumArtist';
 import Artist from './artist';
@@ -12,14 +12,13 @@ import SongArtist from './songArtist';
 import SongMood from './songMood';
 import User from './user';
 
-dotenv.config();
 
 const sequelize = new Sequelize({
-  host: process.env.DB_HOST || 'localhost',
-  database: process.env.DB_DBNAME,
+  host: DB_HOST || 'localhost',
+  database: DB_DBNAME,
   dialect: 'mysql',
-  username: process.env.DB_USERNAME,
-  password: process.env.DB_PASSWORD,
+  username: DB_USERNAME,
+  password: DB_PASSWORD,
   logging: false,
 });
 

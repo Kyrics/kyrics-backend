@@ -6,7 +6,7 @@ import userRouter from './user';
 import songRouter from './song';
 import artistsRouter from './artists';
 import { socialLogin } from '../controller/logIn';
-import { checkLogIn, decodeToken } from '../middleware/auth';
+import { checkLogIn, decodeToken } from '../util/middleware/auth';
 import { getArtist } from '../controller/artist';
 
 const router = express.Router();

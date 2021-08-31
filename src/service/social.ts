@@ -1,5 +1,5 @@
 import { User } from '../models';
-import { jwtSign } from '../module/jwt';
+import { jwtSign } from '../util/jwt';
 import { createUser, findUserBySocialAccount, updateUser } from '../repository/user';
 
 type SocialType = 'Google' | 'Facebook';

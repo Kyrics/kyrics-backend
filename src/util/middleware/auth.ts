@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
-import { jwtVerify } from '../module/jwt';
-import statusCode from '../module/statusCode';
+import { jwtVerify } from '../jwt';
+import statusCode from '../statusCode';
 
 const TOKEN_EXPIRED = -3;
 const TOKEN_INVALID = -2;

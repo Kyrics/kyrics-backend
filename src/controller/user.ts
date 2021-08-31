@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import statusCode from '../module/statusCode';
+import statusCode from '../util/statusCode';
 import {
   readUser,
   deleteUser,
